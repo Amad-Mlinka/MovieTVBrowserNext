@@ -1,0 +1,14 @@
+@import "general.scss";
+
+.header{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.heading{
+  position: fixed;
+  width: 100%;
+  background: rgba($color: #ffffff, $alpha: .5);
+  filter: blur(10px);
+}

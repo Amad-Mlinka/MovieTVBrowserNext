@@ -1,0 +1,11 @@
+@import "general.scss";
+
+.header{
+  position: fixed;
+  width: 100%;
+  background: rgba($color: #ffffff, $alpha: .5);
+  filter: blur(10px);
+}
+.heading{
+  
+}

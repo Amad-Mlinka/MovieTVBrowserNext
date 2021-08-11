@@ -1,0 +1,40 @@
+.mediaList {
+    margin: 30px auto;
+    width: 85%;
+  }
+  .media{
+    margin:auto;
+    background: #8C8;
+    counter-increment: gallery-cell;
+    &:before {
+      display: block;
+      text-align: center;
+      content: counter(gallery-cell);
+      line-height: 200px;
+      font-size: 80px;
+      color: white;
+    }
+  }
+
+  .arrows{
+      display: block;
+  }
+  .arrowsContainer{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+  }
+
+  .arrow{
+      cursor: pointer;
+      margin: 0px 10px;
+  }
+  .arrowLeft{
+    display: block;
+  }
+  .arrowRight{
+    display: block;
+  }
+  
+  

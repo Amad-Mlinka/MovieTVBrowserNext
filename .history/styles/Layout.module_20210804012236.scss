@@ -1,0 +1,10 @@
+@import "general.scss";
+
+.hamburgerClose{
+    transform: translate3d(0,0,0);
+    
+}
+
+.hamburgerOpen{
+    transform: translate3d(200px,0,0);
+}

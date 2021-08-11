@@ -1,0 +1,53 @@
+@import "variables.scss"; 
+.header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: $base-color;
+    height: 60px;
+}
+.hamburger{
+    transition: all 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    top: 22px;
+    left: 15px;
+    height: 22px;
+    width: 22px;
+}
+.spinner{
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+}
+.horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+}
+.diagonal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+}
+
+.part1 {
+    margin-bottom: 3px;
+}
+
+.part2 {
+    
+    
+    margin-top: 3px;
+}
+

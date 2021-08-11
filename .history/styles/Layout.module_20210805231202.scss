@@ -1,0 +1,22 @@
+@import "general.scss";
+
+.main{
+    position: absolute;
+    left: 50px;
+    top: 60px;
+    transition: all 1s ease;
+}
+
+.hamburgerClose{
+    left: 0; 
+    transform: translate(100%, 0);
+    
+}
+
+.hamburgerOpen{
+    left: 200px; 
+    transform: translate(-200px, 0);
+}
+
+
+

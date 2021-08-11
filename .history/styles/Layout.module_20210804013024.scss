@@ -1,0 +1,11 @@
+@import "general.scss";
+
+.hamburgerClose{
+    transition: transform .5s ease-in-out;
+    
+}
+
+.hamburgerOpen{
+    transform: translateX(20%);
+}
+

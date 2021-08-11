@@ -1,0 +1,12 @@
+@import "general.scss";
+
+.hamburgerClose{
+    position: relative;
+    left: 0px;
+    transition: left .5s;
+}
+
+.hamburgerOpen{
+    position: relative;
+    left: 200px;
+}

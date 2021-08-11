@@ -1,0 +1,305 @@
+@import "variables.scss";
+@import "general.scss";
+//***************************Header***************************//
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: $base-color;
+    height: 60px;
+}
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: $base-color;
+    height: 60px;
+}
+.left {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+.hamburgerLogo {
+    display: flex;
+    flex-direction: row;
+}
+.hamburger {
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 99;    
+    height: 25px;
+    width: 25px;
+    margin: 0px 15px;
+}
+.spinner {
+    box-sizing: border-box;
+    position: absolute;
+    height: 3px;
+    width: 20px;
+    background-color: #b4b4b4;
+    border-radius: 5px;
+    margin-top: 3px;
+}
+.horizontal {
+    box-sizing: border-box;
+    position: relative;
+    transition: all ease-out 0.3s;
+}
+.horizontalActive{
+    display: none;
+}
+.diagonal {
+    box-sizing: border-box;
+    position: relative;
+    transition: all ease-out 0.3s;
+}
+.part1Active{
+    transform: rotate(
+        45deg
+        );
+        top: 4px;
+            
+}
+.part2Active{
+    transform: rotate(
+        315deg
+        );
+    bottom: 2px;
+}
+.logo {
+    &::after {
+        content: "X";
+        color: $secondary-color;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    span{
+        display: none;
+    }
+    font-size: 20px;
+    color: white;
+    
+}
+.search {
+    position: absolute;
+    left: 0;
+    top: 60px;
+    background: $base-color;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.searchContainer{
+    width: 80%;
+    display: none;
+}
+.searchIcon {
+    position: absolute;
+    margin: 10px 15px;
+    color: #b4b4b4;
+    height: 20px;
+}
+
+.searchBar {
+    width: 100%;    
+    background: #303437;
+    border: 0;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 45px;
+    caret-color: black;
+    transition: background 0.3s ease-in-out;
+    margin-bottom: 20px;
+    &:focus {
+        background: white;
+        outline: none;       
+    }
+}
+.right{
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 50%;
+}
+.expandButton{
+    font-size: 40px;
+    color: $tertiary-color;
+
+}
+.profile{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;   
+   .loggedIn{
+       display: flex;
+   }
+    .notLoggedIn{
+        .loginRegister{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            color: #b4b4b4;
+            width: 115px;
+            margin-right: 10px;
+        }      
+        
+    }
+}
+
+@include breakpoint(min-tablet){
+
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: $base-color;
+        height: 60px;
+    }
+    .left {
+        display: flex;
+        flex-direction: row;
+        width: 50%;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100%;
+    }    
+    .logo {
+        font-size: 20px;
+        color: white;
+        span{
+            display: inline;
+        }
+        &::after {
+            content: attr(data-end);
+            color: $secondary-color;
+            font-weight: bolder;
+        }
+    }
+    .search {
+        position: relative;
+        margin-left: 10px;
+        top: 0;
+        left: 0;    
+    }
+
+    .expandButton{
+        display: none;
+    }
+    .searchIcon {
+        position: absolute;
+        margin: 10px 15px;
+        color: #b4b4b4;
+        height: 20px;
+    }
+    
+    .searchBar {
+        width: 250px;    
+        background: #303437;
+        border: 0;
+        height: 40px;
+        border-radius: 5px;
+        padding-left: 45px;
+        caret-color: black;
+        transition: background 0.3s ease-in-out;
+        margin: 0;
+        &:focus {
+            background: white;
+            outline: none;       
+        }
+    }
+    .right{
+        height: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        width: 50%;
+    }
+    .profile{
+        display: flex;
+        flex-direction: row;
+        width: 33%;
+        justify-content: center;
+        .loggedIn{
+            .avatar{
+                margin-left: 45px;
+            }
+        }
+        .notLoggedIn{
+            .loginRegister{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                color: #b4b4b4;
+                width: 115px;
+            }      
+            
+        }
+    }
+    
+
+}
+
+//****************************/Header/***************************//
+//***************************Sidebar***************************//
+
+.sidebar{
+    position: fixed;
+    width: 5%;
+    height: 100%;
+    transition: width .5s;
+    background: $base-color;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarActive{
+    width: 50%;
+}
+
+.sidebarMenu{
+    height: 60%;
+    margin-top: 5px;
+}
+
+.sidebarList{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebarLink{
+    height: 30px;
+    color: $tertiary-color;
+    font-family: "Open-sans";
+    font-weight: bolder;
+    display: flex;
+    flex-direction: row;
+    .sidebarIcon{
+        
+    }
+}
