@@ -1,30 +1,30 @@
-import Head from 'next/head'
-
-import mediaListStyles from '../../styles/MediaList.module.scss'
+/*Imports */
 import Media from "./Media"
+import Slider from "react-slick";
+import { useRef } from 'react';
 
+/*Material components*/
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
+/*Icons*/
 
+/*Import Plugins*/
+
+/*Styles*/
+import mediaListStyles from '../../styles/MediaList.module.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Slider from "react-slick";
-import { useEffect, useRef } from 'react';
-import { keys } from 'ts-transformer-keys';
-
-
-
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { movieInterface, tvInterface } from '../../interfaces/mediaInterface';
-
+/*Interfaces */
+import { tvInterface } from '../../interfaces/mediaInterface';
 
 enum mediaType {
     movie = "movie",
     tv = "tv"
 }
 
-interface mediaListInterface {
+interface tvListInterface {
     mediaType: string,
     heading: string,
     subHeading: string,
@@ -32,8 +32,8 @@ interface mediaListInterface {
 }
 //mediaType="movie" media={movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" 
 
-const MediaList = ({ mediaType, media, heading, subHeading }: mediaListInterface) => {
-    const sliderRef = useRef<any>(<Slider/>)
+const MediaList = ({ mediaType, media, heading, subHeading }: tvListInterface) => {
+    const sliderRef = useRef<any>(<Slider />)
 
     const slidePrev = () => {
         sliderRef.current.slickPrev();
@@ -118,22 +118,18 @@ const MediaList = ({ mediaType, media, heading, subHeading }: mediaListInterface
 
                         <div className={`${mediaListStyles.arrowsContainer}`}>
                             <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slidePrev()} ><ChevronLeftIcon /></div>
-                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => {slideNext(); console.log(sliderRef)}} ><ChevronRightIcon /></div>
+                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => { slideNext(); console.log(sliderRef) }} ><ChevronRightIcon /></div>
                         </div>
 
 
                     </div>
                     {
                         mediaType == "tv" && <Slider {...settings} ref={sliderRef}>
-                            {media.map((media:tvInterface) => (
+                            {media.map((media: tvInterface) => (
                                 <Media key={media.id} className={mediaListStyles.mediaItem} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.name} year={media.first_air_date} />
                             ))}
-
-
                         </Slider>
                     }
-
-
                 </div>
             </div>
         </>

@@ -1,35 +1,34 @@
-import Head from 'next/head'
-
-import mediaListStyles from '../../styles/MediaList.module.scss'
+/*Imports */
+import Slider from "react-slick";
+import { useEffect, useRef } from 'react';
 import Media from "./Media"
 
+/*Material components*/
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
+/*Icons*/
 
+/*Import Plugins*/
+
+/*Styles*/
+import mediaListStyles from '../../styles/MediaList.module.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Slider from "react-slick";
-import { useEffect, useRef } from 'react';
-import { keys } from 'ts-transformer-keys';
+/*Interfaces */
+import { movieInterface} from '../../interfaces/mediaInterface';
 
 
-
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { movieInterface, tvInterface } from '../../interfaces/mediaInterface';
-
-
-
-
-interface mediaListInterface {
+interface movieListInterface {
     mediaType: string,
     heading: string,
     subHeading: string,
     media: movieInterface[]
 }
-//mediaType="movie" media={movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" 
 
-const MediaList = ({ mediaType, media, heading, subHeading }: mediaListInterface) => {
+
+ export const MediaList = ({ mediaType, media, heading, subHeading }: movieListInterface) => {
     const sliderRef = useRef<any>(<Slider/>)
 
     const slidePrev = () => {
@@ -122,7 +121,7 @@ const MediaList = ({ mediaType, media, heading, subHeading }: mediaListInterface
                     </div>
                     {
                         mediaType == "movie" && <Slider {...settings} ref={sliderRef}>
-                            {media.map((media) => (
+                            {media.map((media: movieInterface) => (
                                 <Media key={media.id} className={mediaListStyles.mediaItem} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.title} year={media.release_date} />
                             ))}
 

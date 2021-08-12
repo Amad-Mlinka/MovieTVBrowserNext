@@ -1,13 +1,9 @@
 /*Imports */
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
 import * as reduxHooks from "../../hooks/reduxHooks"
-import searchSlice from '../../store/searchSlice';
 import { changeTerm, resetTerm } from '../../store/searchSlice';
 import { changeOpen } from '../../store/sidebarSlice';
-import { sidebarState } from '../../store/sidebarInterface';
-import { searchTermState } from '../../store/searchTermInterface';
 import store, { RootState } from '../../store/store';
 
 /*Material components*/

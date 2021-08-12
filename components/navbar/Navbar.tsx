@@ -1,10 +1,6 @@
 /*Imports */
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import * as reduxHooks from "../../hooks/reduxHooks"
-import searchSlice from '../../store/searchSlice';
-import { changeTerm, resetTerm } from '../../store/searchSlice';
-import { sidebarState } from "../../store/sidebarInterface"
 import { changeOpen } from "../../store/sidebarSlice"
 import { RootState } from '../../store/store';
 

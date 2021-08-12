@@ -1,13 +1,20 @@
+/*Imports */
 import React from 'react'
 import Sidebar from '../sidebar/Sidebar'
 import Navbar from '../navbar/Navbar';
-import PropTypes from "prop-types";
 
+/*Material components*/
 
+/*Icons*/
+
+/*Import Plugins*/
+
+/*Styles*/
+
+/*Interfaces */
 
 
 const Nav = () => {
-
     return (
         <>
             <Navbar  />

@@ -1,8 +1,21 @@
-import React from 'react'
-import contentStyles from "../../styles/Content.module.scss"
+/*Imports */
+
 import * as reduxHooks from "../../hooks/reduxHooks"
 import { RootState } from '../../store/store'
+
+/*Material components*/
+
+/*Icons*/
+
+/*Import Plugins*/
+
+
+/*Styles*/
+import contentStyles from "../../styles/Content.module.scss"
+
+/*Interfaces */
 import ChildrenElementProps from "../../interfaces/childrenInterface"
+
 
 
 const Content = ({children}:ChildrenElementProps) => {

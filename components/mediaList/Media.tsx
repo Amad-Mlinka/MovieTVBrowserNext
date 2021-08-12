@@ -1,9 +1,21 @@
+/*Imports */
 import React from 'react'
 import Image from "next/image"
 
-import mediaStyles from "../../styles/Media.module.scss"
-import placeholder from "../../public/placeholder.png"
+/*Material components*/
 import { Button, Link, Rating } from '@material-ui/core'
+
+/*Icons*/
+
+/*Import Plugins*/
+
+/*Styles*/
+import mediaStyles from "../../styles/Media.module.scss"
+
+/*Interfaces */
+
+
+
 
 interface mediaInterface {
   id: number,

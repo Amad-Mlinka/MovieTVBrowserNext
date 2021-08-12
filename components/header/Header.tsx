@@ -1,6 +1,17 @@
-import React from 'react'
+/*Imports */
 
+/*Material components*/
+
+/*Icons*/
+
+/*Import Plugins*/
+
+/*Styles*/
 import headerStyles from "../../styles/Header.module.scss"
+
+/*Interfaces */
+
+
 
 interface headerProps{
     text:string
