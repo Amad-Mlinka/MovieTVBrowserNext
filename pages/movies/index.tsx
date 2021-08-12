@@ -18,9 +18,9 @@ const index = ({recommendedMovies,discoverMovies,popularMovies}:movieHomeInterfa
            <Header text="Movies"/>
 
             <div className={moviesStyle.buffer}></div>
-            <MediaMovieList mediaType="movie" media={recommendedMovies} heading="Top rated Movies" subHeading="Movies other people like" />
-            <MediaMovieList mediaType="movie" media={discoverMovies} heading="Currently in Theaters" subHeading="Know exactly what You are in for" />
-            <MediaMovieList mediaType="movie" media={popularMovies} heading="Popular Movies" subHeading="Popular movies today" />
+            <MediaMovieList mediaType="movie" media={recommendedMovies} heading="Top rated Movies" subHeading="Movies other people like" overlay={true}/>
+            <MediaMovieList mediaType="movie" media={discoverMovies} heading="Currently in Theaters" subHeading="Know exactly what You are in for" overlay={true} />
+            <MediaMovieList mediaType="movie" media={popularMovies} heading="Popular Movies" subHeading="Popular movies today" overlay={true}/>
         </>
     )
 }

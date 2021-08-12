@@ -1,5 +1,4 @@
 /*Imports */
-import React from 'react'
 import Image from "next/image"
 
 /*Material components*/
@@ -19,15 +18,16 @@ import mediaStyles from "../../styles/Media.module.scss"
 
 interface mediaInterface {
   id: number,
-  rating:number,
-  title:string,
-  year:string,
-  image:string
+  rating: number,
+  title: string,
+  year: string,
+  image: string,
+  overlay: boolean
 }
 // <Media id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.name} year={media.first_air_date} />
 
 
-const Media = (props: any) => {
+const Media = (props: mediaInterface) => {
   const imageUrl = `https://image.tmdb.org/t/p/original/${props.image}`
   const placeholderUrl = "placeholder.png"
   return (
@@ -38,22 +38,24 @@ const Media = (props: any) => {
             <div className={mediaStyles.mediaImageContainer}>
               <Image className={mediaStyles.mediaImage} src={`${props.image ? imageUrl : placeholderUrl}`} width="200" height="300" />
             </div>
-            <div className={mediaStyles.mediaOverlay}>
-              <div className={mediaStyles.mediaRating}>
-                <Rating readOnly value={props.rating}></Rating>
-                <span className={`${mediaStyles.mediaRatingText} ${mediaStyles.mediaOverlayItem}`}> {props.rating}/5</span>
+            {props.overlay &&
+              <div className={mediaStyles.mediaOverlay}>
+                <div className={mediaStyles.mediaRating}>
+                  <Rating readOnly value={props.rating}></Rating>
+                  <span className={`${mediaStyles.mediaRatingText} ${mediaStyles.mediaOverlayItem}`}> {props.rating}/5</span>
+                </div>
+                <div className={`${mediaStyles.mediaGenre} ${mediaStyles.mediaOverlayItem}`}>
+                  <span className={`${mediaStyles.mediaGenreText}`}> Drama</span>
+                </div>
+                <div className={`${mediaStyles.mediaDetails} ${mediaStyles.mediaOverlayItem}`}>
+                  <Button variant="contained" color="success">
+                    Details
+                  </Button>
+                </div>
               </div>
-              <div className={`${mediaStyles.mediaGenre} ${mediaStyles.mediaOverlayItem}`}>
-                <span className={`${mediaStyles.mediaGenreText}`}> Drama</span>
-              </div>
-              <div className={`${mediaStyles.mediaDetails} ${mediaStyles.mediaOverlayItem}`}>
-                <Button variant="contained" color="success">
-                  Details
-                </Button>
-              </div>
-            </div>
-
+            }
           </div>
+          {props.overlay &&
           <div className={mediaStyles.mediaInfo}>
             <div className={mediaStyles.mediaTitle}>
               <span className={mediaStyles.mediaTitleText}> {props.title}</span>
@@ -61,7 +63,7 @@ const Media = (props: any) => {
             <div className={mediaStyles.mediaYear}>
               <span className={mediaStyles.mediaYearText}> {props.year.substring(0, 4)}</span>
             </div>
-          </div>
+          </div>}
         </Link>
 
 

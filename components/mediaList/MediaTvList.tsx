@@ -1,7 +1,8 @@
 /*Imports */
 import Media from "./Media"
-import Slider from "react-slick";
+
 import { useRef } from 'react';
+import Slider from "react-slick";
 
 /*Material components*/
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -28,11 +29,12 @@ interface tvListInterface {
     mediaType: string,
     heading: string,
     subHeading: string,
-    media: tvInterface[]
+    media: tvInterface[],
+    overlay:boolean
 }
 //mediaType="movie" media={movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" 
 
-const MediaList = ({ mediaType, media, heading, subHeading }: tvListInterface) => {
+const MediaList = ({ mediaType, media, heading, subHeading,overlay }: tvListInterface) => {
     const sliderRef = useRef<any>(<Slider />)
 
     const slidePrev = () => {
@@ -126,7 +128,7 @@ const MediaList = ({ mediaType, media, heading, subHeading }: tvListInterface) =
                     {
                         mediaType == "tv" && <Slider {...settings} ref={sliderRef}>
                             {media.map((media: tvInterface) => (
-                                <Media key={media.id} className={mediaListStyles.mediaItem} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.name} year={media.first_air_date} />
+                                <Media overlay={overlay} key={media.id} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.name} year={media.first_air_date} />
                             ))}
                         </Slider>
                     }

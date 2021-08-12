@@ -1,5 +1,4 @@
 /*Imports */
-import React from 'react'
 import Sidebar from '../sidebar/Sidebar'
 import Navbar from '../navbar/Navbar';
 

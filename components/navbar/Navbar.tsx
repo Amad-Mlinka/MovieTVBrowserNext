@@ -1,5 +1,4 @@
 /*Imports */
-import React, { useEffect } from 'react'
 import * as reduxHooks from "../../hooks/reduxHooks"
 import { changeOpen } from "../../store/sidebarSlice"
 import { RootState } from '../../store/store';

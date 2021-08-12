@@ -1,3 +1,9 @@
+export interface genreInterface {
+    id:number,
+    name:string
+}
+
+
 interface mediaInterface {
     id:number,
     poster_path:string,
@@ -7,7 +13,7 @@ interface mediaInterface {
     vote_average:number,
     overview:string,
     original_language:string,
-    genre_ids:number[],
+    genres:genreInterface[],
 
 
 }
@@ -15,7 +21,7 @@ interface mediaInterface {
 export interface movieInterface extends mediaInterface{
     adult:boolean,
     original_title:string,
-    title?:string,
+    title:string,
     release_date:string,
     video:boolean
 }
@@ -24,6 +30,6 @@ export interface movieInterface extends mediaInterface{
 export interface tvInterface extends mediaInterface{
     first_air_date:string,
     origin_country:string[],
-    name?:string,
+    name:string,
     original_name:string
 }

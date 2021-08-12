@@ -24,11 +24,12 @@ interface movieListInterface {
     mediaType: string,
     heading: string,
     subHeading: string,
-    media: movieInterface[]
+    media: movieInterface[],
+    overlay:boolean
 }
 
 
- export const MediaList = ({ mediaType, media, heading, subHeading }: movieListInterface) => {
+ export const MediaList = ({ mediaType, media, heading, subHeading, overlay }: movieListInterface) => {
     const sliderRef = useRef<any>(<Slider/>)
 
     const slidePrev = () => {
@@ -122,7 +123,7 @@ interface movieListInterface {
                     {
                         mediaType == "movie" && <Slider {...settings} ref={sliderRef}>
                             {media.map((media: movieInterface) => (
-                                <Media key={media.id} className={mediaListStyles.mediaItem} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.title} year={media.release_date} />
+                                <Media key={media.id} overlay={overlay} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.title} year={media.release_date} />
                             ))}
 
 

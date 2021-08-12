@@ -1,15 +1,16 @@
 @import "general.scss";
 
 .media {
-    width: fit-content;
-    height: fit-content;
-    margin: auto;
+   width: 100%;
+  display: flex;
+  justify-content: center;
     
   }
   
   .mediaContainer {
     position: relative;
     overflow: hidden; 
+    width: fit-content;
   }
   .mediaImageContainer{
     border: 5px solid white !important;

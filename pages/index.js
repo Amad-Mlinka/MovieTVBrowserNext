@@ -33,8 +33,8 @@ export default function Home(props) {
     
     <>
       <Header text="Home"/>      
-       <MediaMovieList  mediaType="movie" media={props.movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" />
-       <MediaTvList mediaType="tv" media={props.tv.results} heading="TV" subHeading="Discover new TV Shows picked just for you" />
+       <MediaMovieList  mediaType="movie" media={props.movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" overlay={true}/>
+       <MediaTvList mediaType="tv" media={props.tv.results} heading="TV" subHeading="Discover new TV Shows picked just for you" overlay={true}/>
     </>
 
   )
