@@ -13,9 +13,6 @@ import mediaStyles from "../../styles/Media.module.scss"
 
 /*Interfaces */
 
-
-
-
 interface mediaInterface {
   id: number,
   rating: number,

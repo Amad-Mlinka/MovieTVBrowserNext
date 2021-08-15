@@ -1,0 +1,63 @@
+@import "general.scss";
+
+.actor {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.actorContainer {
+  position: relative;
+  overflow: hidden;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.actorImageContainer {
+  border: 5px solid white !important;
+}
+
+.actorImage {
+  width: 200px;
+}
+
+.actorImageContainer {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.actorInfo {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  margin-left: 10px;
+  text-align: center;
+
+  span{
+    width: 100%;
+    display: block;
+  }
+  
+}
+
+.actorNameText {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  width: 200px;
+}
+
+@include breakpoint(min-tablet) {
+  .actorContainer {
+    position: relative;
+    overflow: hidden;
+  }
+}

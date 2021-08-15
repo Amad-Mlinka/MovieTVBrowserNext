@@ -1,7 +1,7 @@
 /*Imports */
+import React, { useRef } from 'react'
 import Slider from "react-slick";
-import { useEffect, useRef } from 'react';
-import Media from "./Media"
+import Actor from './Actor';
 
 /*Material components*/
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -12,24 +12,21 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 /*Import Plugins*/
 
 /*Styles*/
-import mediaListStyles from '../../styles/MediaList.module.scss'
+import actorListStyles from '../../styles/ActorList.module.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 /*Interfaces */
-import { movieInterface } from '../../interfaces/mediaInterface';
+import { ActorP } from '../../interfaces/peopleInterface';
 
-
-interface movieListInterface {
-    mediaType: string,
-    heading: string,
-    subHeading: string,
-    media: movieInterface[],
-    overlay: boolean
+interface actorListProps {
+    actors: ActorP[]
 }
 
 
-export const MediaList = ({ mediaType, media, heading, subHeading, overlay }: movieListInterface) => {
+const ActorList = (props: actorListProps) => {
+
+    const actors = props.actors
     const sliderRef = useRef<any>(<Slider />)
 
     const slidePrev = () => {
@@ -38,7 +35,6 @@ export const MediaList = ({ mediaType, media, heading, subHeading, overlay }: mo
     const slideNext = () => {
         sliderRef.current.slickNext();
     }
-
     var settings = {
         dots: false,
         infinite: true,
@@ -99,47 +95,47 @@ export const MediaList = ({ mediaType, media, heading, subHeading, overlay }: mo
             }
         ]
     };
+
     return (
         <>
-            <div className={mediaListStyles.mediaList} >
-                <div className={mediaListStyles.content}>
-                    <div className={mediaListStyles.header}>
-                        <div className={mediaListStyles.headerContainer}>
-                            <div className={mediaListStyles.heading}>
-                                <span>{heading}</span>
+            <div className={actorListStyles.actorList} >
+                <div className={actorListStyles.content}>
+                    <div className={actorListStyles.header}>
+                        <div className={actorListStyles.headerContainer}>
+                            <div className={actorListStyles.heading}>
+                                <span>Actors</span>
                             </div>
-                            <div className={mediaListStyles.subHeading}>
-                                <span>{subHeading}</span>
+                            <div className={actorListStyles.subHeading}>
+                                <span>In this movie</span>
                             </div>
                         </div>
 
-                        <div className={`${mediaListStyles.arrowsContainer}`}>
-                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slidePrev()} ><ChevronLeftIcon /></div>
-                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => { slideNext(); console.log(sliderRef) }} ><ChevronRightIcon /></div>
+                        <div className={`${actorListStyles.arrowsContainer}`}>
+                            <div className={`${actorListStyles.arrow} ${actorListStyles.arrowLeft}`} onClick={() => slidePrev()} ><ChevronLeftIcon /></div>
+                            <div className={`${actorListStyles.arrow} ${actorListStyles.arrowLeft}`} onClick={() => { slideNext(); console.log(sliderRef) }} ><ChevronRightIcon /></div>
                         </div>
 
 
                     </div>
-                    {
-                        mediaType == "movie" && <Slider {...settings} ref={sliderRef}>
-                            {
-                            media.map((media: movieInterface) => (
-                                <Media key={media.id} overlay={overlay} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.title} year={media.release_date} />
-                            )
-                            )}
 
+                    {
+                        <Slider {...settings} ref={sliderRef}>
+                            {
+                                actors.map((actor: ActorP) => 
+                                    (
+                                        <Actor key={actor.id} name={actor.name} id={actor.id} character={actor.character} profile_path={actor.profile_path} />
+
+                                    )
+                                )
+                            }
 
                         </Slider>
                     }
 
-
                 </div>
             </div>
         </>
-
     )
 }
 
-
-
-export default MediaList
+export default ActorList
