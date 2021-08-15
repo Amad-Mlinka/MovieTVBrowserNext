@@ -54,7 +54,6 @@ const Movie = ({ data }: dataProp) => {
     const trailer = data.movieTrailer.filter(movie => {
         return movie.type === "Trailer"
     })
-    console.log(trailer[0])
 
 
 
@@ -95,8 +94,8 @@ const Movie = ({ data }: dataProp) => {
                             </div>
                             <div className={movieDetailsStyles.genres}>
                                 <ul className={movieDetailsStyles.genresList}>
-                                    {movie.genres.map((genre: genreInterface) => (
-                                        <li key={genre.id} className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.genreListItem} `}>
+                                    {movie.genres.map((genre: genreInterface, i:number) => (
+                                        <li key={i} className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.genreListItem} `}>
                                             {genre.name}
                                         </li>
                                     ))}
@@ -122,9 +121,9 @@ const Movie = ({ data }: dataProp) => {
                             <SRLWrapper>
                                 <div className={`${movieDetailsStyles.movieMediaImages}`}>
                                     {
-                                        images.posters.slice(0, 9).map((image: imageInterface) => (
-                                            <div key ={image.vote_count} className={movieDetailsStyles.movieMediaImageContainer}>
-                                                <img key ={image.vote_count} className={`${movieDetailsStyles.movieMediaImage}`} src={`http://image.tmdb.org/t/p/original${image.file_path}`} width={50} height={75} />
+                                        images.posters.slice(0, 9).map((image: imageInterface, i:number) => (
+                                            <div key ={i} className={movieDetailsStyles.movieMediaImageContainer}>
+                                                <img key ={i} className={`${movieDetailsStyles.movieMediaImage}`} alt={`${i}`} src={`http://image.tmdb.org/t/p/original${image.file_path}`} width={50} height={75} />
                                             </div>
                                         ))
                                     }
