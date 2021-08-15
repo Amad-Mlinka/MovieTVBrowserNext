@@ -54,6 +54,7 @@ const Movie = ({ data }: dataProp) => {
     const trailer = data.movieTrailer.filter(movie => {
         return movie.type === "Trailer"
     })
+    console.log(trailer)
 
 
 
@@ -94,7 +95,7 @@ const Movie = ({ data }: dataProp) => {
                             </div>
                             <div className={movieDetailsStyles.genres}>
                                 <ul className={movieDetailsStyles.genresList}>
-                                    {movie.genres.map((genre: genreInterface, i:number) => (
+                                    {movie.genres.map((genre: genreInterface, i: number) => (
                                         <li key={i} className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.genreListItem} `}>
                                             {genre.name}
                                         </li>
@@ -120,12 +121,13 @@ const Movie = ({ data }: dataProp) => {
 
                             <SRLWrapper>
                                 <div className={`${movieDetailsStyles.movieMediaImages}`}>
-                                    {
-                                        images.posters.slice(0, 9).map((image: imageInterface, i:number) => (
-                                            <div key ={i} className={movieDetailsStyles.movieMediaImageContainer}>
-                                                <img key ={i} className={`${movieDetailsStyles.movieMediaImage}`} alt={`${i}`} src={`http://image.tmdb.org/t/p/original${image.file_path}`} width={50} height={75} />
-                                            </div>
-                                        ))
+                                    {images.posters.length!=0 ?
+                                        images.posters.slice(0, 9).map((image: imageInterface, i: number) => (
+                                            <div key={i} className={movieDetailsStyles.movieMediaImageContainer}>
+                                                <img key={i} className={`${movieDetailsStyles.movieMediaImage}`} alt={`${i}`} src={`http://image.tmdb.org/t/p/original${image.file_path}`} width={50} height={75} />
+                                            </div> 
+                                        )):
+                                        <h1>No images</h1>
                                     }
                                 </div>
                             </SRLWrapper>
@@ -136,10 +138,12 @@ const Movie = ({ data }: dataProp) => {
                                 <div className={`${movieDetailsStyles.trailerTitle} ${movieDetailsStyles.detailsText}`}>
                                     <span>Trailer</span>
                                 </div>
-
-                                <SRLWrapper>
-                                    <ReactPlayer width={200} height={100} url={`https://www.youtube.com/watch?v=${trailer[0].key}`} />
-                                </SRLWrapper>
+                                {trailer.length != 0 ?
+                                    <SRLWrapper>
+                                        <ReactPlayer width={200} height={100} url={`https://www.youtube.com/watch?v=${trailer[0].key}`} />
+                                    </SRLWrapper>:
+                                    <h1>No trailer</h1>
+                                }
                             </div>
                         </div>
                     </div>
