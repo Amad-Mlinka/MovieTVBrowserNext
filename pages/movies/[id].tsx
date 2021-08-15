@@ -123,8 +123,8 @@ const Movie = ({ data }: dataProp) => {
                                 <div className={`${movieDetailsStyles.movieMediaImages}`}>
                                     {
                                         images.posters.slice(0, 9).map((image: imageInterface) => (
-                                            <div key ={image.file_path} className={movieDetailsStyles.movieMediaImageContainer}>
-                                                <img key ={image.file_path} className={`${movieDetailsStyles.movieMediaImage}`} src={`http://image.tmdb.org/t/p/original${image.file_path}`} width={50} height={75} />
+                                            <div key ={image.vote_count} className={movieDetailsStyles.movieMediaImageContainer}>
+                                                <img key ={image.vote_count} className={`${movieDetailsStyles.movieMediaImage}`} src={`http://image.tmdb.org/t/p/original${image.file_path}`} width={50} height={75} />
                                             </div>
                                         ))
                                     }
