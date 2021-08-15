@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../components/header/Header'
-import MediaMovieList from '../../components/mediaList/MediaMovieList'
+import { MovieMediaList } from '../../components/mediaList/MediaList'
 import { movieInterface } from '../../interfaces/mediaInterface'
 import moviesStyle from "../../styles/Movies.module.scss"
 
@@ -18,9 +18,9 @@ const index = ({recommendedMovies,discoverMovies,popularMovies}:movieHomeInterfa
            <Header text="Movies"/>
 
             <div className={moviesStyle.buffer}></div>
-            <MediaMovieList mediaType="movie" media={recommendedMovies} heading="Top rated Movies" subHeading="Movies other people like" overlay={true}/>
-            <MediaMovieList mediaType="movie" media={discoverMovies} heading="Currently in Theaters" subHeading="Know exactly what You are in for" overlay={true} />
-            <MediaMovieList mediaType="movie" media={popularMovies} heading="Popular Movies" subHeading="Popular movies today" overlay={true}/>
+            <MovieMediaList mediaType="movie" media={recommendedMovies} heading="Top rated Movies" subHeading="Movies other people like" overlay={true}/>
+            <MovieMediaList mediaType="movie" media={discoverMovies} heading="Currently in Theaters" subHeading="Know exactly what You are in for" overlay={true} />
+            <MovieMediaList mediaType="movie" media={popularMovies} heading="Popular Movies" subHeading="Popular movies today" overlay={true}/>
         </>
     )
 }

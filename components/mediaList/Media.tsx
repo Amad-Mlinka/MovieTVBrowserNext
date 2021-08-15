@@ -12,25 +12,26 @@ import { Button, Link, Rating } from '@material-ui/core'
 import mediaStyles from "../../styles/Media.module.scss"
 
 /*Interfaces */
-
 interface mediaInterface {
   id: number,
   rating: number,
   title: string,
   year: string,
   image: string,
-  overlay: boolean
+  overlay: boolean,
+  type: string
 }
-// <Media id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.name} year={media.first_air_date} />
+
 
 
 const Media = (props: mediaInterface) => {
   const imageUrl = `https://image.tmdb.org/t/p/original/${props.image}`
-  const placeholderUrl = "placeholder.png"
+  const placeholderUrl = "/placeholder.png"
+  console.log(props.year)
   return (
     <>
       <div className={mediaStyles.media}>
-        <Link href={`/movies/${props.id}`}>
+        <Link href={`/${props.type}/${props.id}`}>
           <div className={mediaStyles.mediaContainer}>
             <div className={mediaStyles.mediaImageContainer}>
               <Image className={mediaStyles.mediaImage} alt="Media image" src={`${props.image ? imageUrl : placeholderUrl}`} width="200" height="300" />
@@ -53,19 +54,16 @@ const Media = (props: mediaInterface) => {
             }
           </div>
           {props.overlay &&
-          <div className={mediaStyles.mediaInfo}>
-            <div className={mediaStyles.mediaTitle}>
-              <span className={mediaStyles.mediaTitleText}> {props.title}</span>
-            </div>
-            <div className={mediaStyles.mediaYear}>
-              <span className={mediaStyles.mediaYearText}> {props.year.substring(0, 4)}</span>
-            </div>
-          </div>}
+            <div className={mediaStyles.mediaInfo}>
+              <div className={mediaStyles.mediaTitle}>
+                <span className={mediaStyles.mediaTitleText}> {props.title}</span>
+              </div>
+              <div className={mediaStyles.mediaYear}>
+                <span className={mediaStyles.mediaYearText}> {props.year ? props.year.substring(0, 4) : "Unknown"}</span>
+              </div>
+            </div>}
         </Link>
-
-
       </div>
-
     </>
   )
 }

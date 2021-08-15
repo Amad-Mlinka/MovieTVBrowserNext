@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import homeStyles from '../styles/Home.module.scss'
 import MediaMovieList from "../components/mediaList/MediaMovieList"
-import MediaTvList from "../components/mediaList/MediaTvList"
+import {MovieMediaList, TvMediaList} from "../components/mediaList/MediaList"
 import Header from '../components/header/Header'
 
 import "slick-carousel/slick/slick.css";
@@ -33,8 +33,8 @@ export default function Home(props) {
     
     <>
       <Header text="Home"/>      
-       <MediaMovieList  mediaType="movie" media={props.movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" overlay={true}/>
-       <MediaTvList mediaType="tv" media={props.tv.results} heading="TV" subHeading="Discover new TV Shows picked just for you" overlay={true}/>
+       <MovieMediaList  mediaType="movie" media={props.movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" overlay={true}/>
+       <TvMediaList mediaType="tv" media={props.tv.results} heading="TV" subHeading="Discover new TV Shows picked just for you" overlay={true}/>
     </>
 
   )

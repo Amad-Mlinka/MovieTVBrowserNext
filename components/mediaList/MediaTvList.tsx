@@ -20,23 +20,20 @@ import "slick-carousel/slick/slick-theme.css";
 /*Interfaces */
 import { tvInterface } from '../../interfaces/mediaInterface';
 
-enum mediaType {
-    movie = "movie",
-    tv = "tv"
-}
+
 
 interface tvListInterface {
     mediaType: string,
     heading: string,
     subHeading: string,
     media: tvInterface[],
-    overlay:boolean
+    overlay: boolean
 }
 //mediaType="movie" media={movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" 
 
-const MediaList = ({ mediaType, media, heading, subHeading,overlay }: tvListInterface) => {
+const MediaList = ({ mediaType, media, heading, subHeading, overlay }: tvListInterface) => {
     const sliderRef = useRef<any>(<Slider />)
-
+        console.log(media)
     const slidePrev = () => {
         sliderRef.current.slickPrev();
     }
@@ -126,9 +123,9 @@ const MediaList = ({ mediaType, media, heading, subHeading,overlay }: tvListInte
 
                     </div>
                     {
-                        mediaType == "tv" && <Slider {...settings} ref={sliderRef}>
+                        <Slider {...settings} ref={sliderRef}>
                             {media.map((media: tvInterface) => (
-                                <Media overlay={overlay} key={media.id} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.name} year={media.first_air_date} />
+                                <Media type="tv" overlay={overlay} key={media.id} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.name} year={media.first_air_date} />
                             ))}
                         </Slider>
                     }
