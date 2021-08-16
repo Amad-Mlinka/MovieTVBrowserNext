@@ -29,7 +29,6 @@ const Navbar = () => {
 
     const sidebarToggle = () => {
         dispatch(changeOpen())
-        console.log(sidebar)
     }
     return (
         <header className={navStyles.header}>

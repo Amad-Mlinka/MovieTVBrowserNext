@@ -27,7 +27,6 @@ interface mediaInterface {
 const Media = (props: mediaInterface) => {
   const imageUrl = `https://image.tmdb.org/t/p/original/${props.image}`
   const placeholderUrl = "/placeholder.png"
-  console.log(props.year)
   return (
     <>
       <div className={mediaStyles.media}>

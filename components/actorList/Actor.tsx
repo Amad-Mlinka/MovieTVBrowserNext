@@ -25,7 +25,7 @@ const Actor = ({ id, name, character, profile_path }: actorInterface) => {
 
         <div className={actorStyles.actorInfo}>
           <div className={actorStyles.actorTitle}>
-            <span className={actorStyles.actorNameText}> {name}</span>
+            <span className={actorStyles.actorNameText}> {name} as</span>
           </div>
           <div className={actorStyles.actorYear}>
             <span className={actorStyles.actorCharacterText}> {character}</span>

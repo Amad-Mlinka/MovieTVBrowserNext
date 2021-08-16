@@ -39,7 +39,7 @@ const ActorList = (props: actorListProps) => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 1,
         slidesToScroll: 1,
         variableWidth: false,
         arrows: false,
@@ -54,42 +54,42 @@ const ActorList = (props: actorListProps) => {
             {
                 breakpoint: 1860,
                 settings: {
-                    slidesToShow: 6,
+                    slidesToShow: actors.length-1 <= 6 ? actors.length : 6,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 1424,
                 settings: {
-                    slidesToShow: 5,
+                    slidesToShow: actors.length-1 <= 5 ? actors.length :  5,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 1200,
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: actors.length-1 <= 4 ? actors.length :  4,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 920,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: actors.length-1 <= 3 ? actors.length :  3,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 700,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: actors.length-1 <= 2 ? actors.length :  2,
                     slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: actors.length-1 <= 1 ? actors.length :  1,
                     slidesToScroll: 1
                 }
             }
@@ -123,7 +123,7 @@ const ActorList = (props: actorListProps) => {
                             {
                                 actors.map((actor: ActorP) => 
                                     (
-                                        <Actor key={actor.id} name={actor.name} id={actor.id} character={actor.character} profile_path={actor.profile_path} />
+                                        <Actor key={actor.id} {...actor} />
 
                                     )
                                 )

@@ -13,7 +13,7 @@
     top: 0;
 }
 
-.movieInfo {    
+.movieInfo {
     .infoColumn {
         width: 100%;
     }
@@ -29,7 +29,7 @@
     .imageContainer {
         display: none;
         margin: 20px;
-       /* .image {
+        /* .image {
             margin-left: 50px;
             max-width: 500px;
         }*/
@@ -37,12 +37,21 @@
     .details {
         margin: 0px 10px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .movieMediaTrailerContainer{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
     .detailsText {
         color: white;
         font-weight: bold;
         font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
-        margin: 10px;
+        text-align: center;
     }
     .title {
         font-size: 50px;
@@ -80,33 +89,39 @@
             font-size: 30px;
         }
         .movieMediaContainer {
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
+    }
+    .movieMediaImagesContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .movieMediaImages {
         width: 100%;
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;   
-        justify-content: center;   
+        flex-wrap: wrap;
+        justify-content: center;
 
-        .movieMediaImageContainer {            
+        .movieMediaImageContainer {
             width: 26%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 5px 0px;
+            margin: 5px 6px;
             .movieMediaImage {
                 width: 100px;
                 height: auto;
             }
         }
     }
-    .movieMediaTrailerContainer{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    .movieMediaTrailerContainer {
+        height: 30%;
         .trailerTitle {
             font-size: 30px;
             text-align: left;
@@ -116,19 +131,36 @@
 }
 
 @include breakpoint(min-laptop) {
-
-    .basicInfo{
+    .basicInfo {
         flex-direction: row;
+        
+        .details{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            .detailsText {
+                color: white;
+                font-weight: bold;
+                font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
+                text-align: left !important;
+            }
+            .movieMediaTrailerContainer{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }            
+        }
+
         .movieMediaImages {
-            .movieMediaImageContainer {    
+            .movieMediaImageContainer {
                 .movieMediaImage {
-                    width: 80%;
+                    width: 100%;
                     height: auto;
                 }
             }
         }
     }
-   
 }
 
 @include breakpoint(min-desktop) {
@@ -138,78 +170,78 @@
         padding-top: 50px;
         .imageDetailsContainer {
             display: flex;
-            
+            width: 70%;
+            .imageContainer {
+                display: block;
+                width: 40%;
+            }
+            .details {
+                margin: 0px 10px;
+                width: 60%;
+            }
+        }
+    }
 
-        }
-        .imageContainer {
-            display: block;
-            width: 50%;
-        };
-        }
-        .details {
-            margin: 0px 10px;
-            width: 100%;
-        }
-        .detailsText {
-            color: white;
-            font-weight: bold;
-            font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
-            margin: 10px;
-        }
-        .title {
-            font-size: 50px;
-        }
-        .year {
-            font-size: 20px;
-        }
-    
-        .rating {
-            display: flex;
-            flex-direction: column;
-        }
-        .genresList {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: row;
-            font-size: 20px;
-    
-            .genreListItem {
-                margin: 0;
-    
-                &:not(:first-child) {
-                    &::before {
-                        content: "/";
-                        margin: 0px 5px;
-                    }
+    .detailsText {
+        color: white;
+        font-weight: bold;
+        font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
+        margin: 10px;
+    }
+    .title {
+        font-size: 50px;
+    }
+    .year {
+        font-size: 20px;
+    }
+
+    .rating {
+        display: flex;
+        flex-direction: column;
+    }
+    .genresList {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        font-size: 20px;
+
+        .genreListItem {
+            margin: 0;
+
+            &:not(:first-child) {
+                &::before {
+                    content: "/";
+                    margin: 0px 5px;
                 }
             }
         }
-        .movieMedia {
-            .imagesTitle {
-                font-size: 30px;
-            }
-            .movieMediaContainer {
+    }
+    .movieMedia {
+        width: 33% !important;
+        .imagesTitle {
+            font-size: 30px;
+        }
+        .movieMediaContainer {
+            width: 100%;
+        }
+    }
+    .movieMediaImages {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+
+        .movieMediaImageContainer {
+            width: 33%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px 0px;
+            .movieMediaImage {
                 width: 100%;
+                height: auto;
             }
         }
-        .movieMediaImages {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;      
-    
-            .movieMediaImageContainer {            
-                width: 33%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 5px 0px;
-                .movieMediaImage {
-                    width: 80% !important;
-                    height: auto;
-                }
-            }
-        }
+    }
 }
-

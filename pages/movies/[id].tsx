@@ -54,18 +54,10 @@ const Movie = ({ data }: dataProp) => {
     const trailer = data.movieTrailer.filter(movie => {
         return movie.type === "Trailer"
     })
-    console.log(trailer)
-
-
-
 
     const imageWidth = 1280
     const backdropImageUrl = `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`
     const imageUrl = `https://image.tmdb.org/t/p/w${imageWidth}/${movie.poster_path}`
-
-
-
-
 
     return (
         <div className={movieDetailsStyles.container} >
@@ -95,7 +87,7 @@ const Movie = ({ data }: dataProp) => {
                             </div>
                             <div className={movieDetailsStyles.genres}>
                                 <ul className={movieDetailsStyles.genresList}>
-                                    {movie.genres.map((genre: genreInterface, i: number) => (
+                                    {movie.genres.slice(0,3).map((genre: genreInterface, i: number) => (
                                         <li key={i} className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.genreListItem} `}>
                                             {genre.name}
                                         </li>
@@ -106,6 +98,18 @@ const Movie = ({ data }: dataProp) => {
                             <div className={movieDetailsStyles.synopsis}>
                                 <h1 className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.synopsisTitle}`} >Synopsis</h1>
                                 <span className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.synopsisText}`} >{movie.overview}</span>
+                            </div>
+                            <div className={`${movieDetailsStyles.movieMediaTrailerContainer}`}>
+
+                                <h1 className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.synopsisTitle}`}>
+                                    Trailer
+                                </h1>
+                                {trailer.length != 0 ?
+                                    <SRLWrapper>
+                                        <ReactPlayer width="300px" height="150px" url={`https://www.youtube.com/watch?v=${trailer[0].key}`} />
+                                    </SRLWrapper>:
+                                    <h1>No trailer</h1>
+                                }
                             </div>
                         </div>
                     </div>
@@ -133,18 +137,7 @@ const Movie = ({ data }: dataProp) => {
                             </SRLWrapper>
 
 
-                            <div className={`${movieDetailsStyles.movieMediaTrailerContainer}`}>
-
-                                <div className={`${movieDetailsStyles.trailerTitle} ${movieDetailsStyles.detailsText}`}>
-                                    <span>Trailer</span>
-                                </div>
-                                {trailer.length != 0 ?
-                                    <SRLWrapper>
-                                        <ReactPlayer width={200} height={100} url={`https://www.youtube.com/watch?v=${trailer[0].key}`} />
-                                    </SRLWrapper>:
-                                    <h1>No trailer</h1>
-                                }
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

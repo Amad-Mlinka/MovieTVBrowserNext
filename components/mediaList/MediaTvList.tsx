@@ -31,9 +31,8 @@ interface tvListInterface {
 }
 //mediaType="movie" media={movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" 
 
-const MediaList = ({ mediaType, media, heading, subHeading, overlay }: tvListInterface) => {
+export const MediaList = ({ mediaType, media, heading, subHeading, overlay }: tvListInterface) => {
     const sliderRef = useRef<any>(<Slider />)
-        console.log(media)
     const slidePrev = () => {
         sliderRef.current.slickPrev();
     }
@@ -117,7 +116,7 @@ const MediaList = ({ mediaType, media, heading, subHeading, overlay }: tvListInt
 
                         <div className={`${mediaListStyles.arrowsContainer}`}>
                             <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slidePrev()} ><ChevronLeftIcon /></div>
-                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => { slideNext(); console.log(sliderRef) }} ><ChevronRightIcon /></div>
+                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slideNext()} ><ChevronRightIcon /></div>
                         </div>
 
 

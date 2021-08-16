@@ -45,16 +45,10 @@ const SidebarLink = ({type,url,text,icon,dropdownLinks}:SidebarLinkProps) => {
 
     const changeTermHandler = (term:string) => {
         dispatch(changeTerm(term))
-        console.log(searchTerm)
     }
 
     const resetTermHandler = () => {
         dispatch(resetTerm())
-    }
-
-    const sidebarToggle = () => {
-        dispatch(changeOpen())
-        console.log(sidebar)
     }
 
     const types = ["search", "singleLink", "dropdown"]
@@ -77,9 +71,7 @@ const SidebarLink = ({type,url,text,icon,dropdownLinks}:SidebarLinkProps) => {
                     :
                     type === types[1] ?
                         <Link href={url ? url : "/"}>
-                            <li className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} style={{ margin: '10px auto' }} onClick={() => {
-                                if (sidebar) sidebarToggle()
-                            }}>
+                            <li className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} style={{ margin: '10px auto' }}>
                                 <div className={`${sidebarStyles.sidebarLinkMain} ${sidebar ? sidebarStyles.sidebarLinkMainOpen : ""}`}>
                                     {icon}
                                     <span className={`${sidebarStyles.sidebarText}  ${sidebar ? sidebarStyles.sidebarTextActive : ""}`}>{text}</span>
@@ -90,8 +82,7 @@ const SidebarLink = ({type,url,text,icon,dropdownLinks}:SidebarLinkProps) => {
 
                         :
                         <li className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} style={{ margin: '10px auto' }} onClick={() => {
-                            if (sidebar) sidebarToggle()
-                            setDropdownOpen(!dropdownOpen)
+                            if (sidebar) setDropdownOpen(!dropdownOpen)
                         }
                         }>
                             <div className={`${sidebarStyles.sidebarLinkMain} ${sidebar ? sidebarStyles.sidebarLinkMainOpen : ""}`}>
