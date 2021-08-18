@@ -2,6 +2,7 @@
 import React, { useRef } from 'react'
 import Slider from "react-slick";
 import Actor from './Actor';
+import { settings } from "../slider/SliderSettings";
 
 /*Material components*/
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -35,66 +36,6 @@ const ActorList = (props: actorListProps) => {
     const slideNext = () => {
         sliderRef.current.slickNext();
     }
-    var settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        variableWidth: false,
-        arrows: false,
-        responsive: [
-            {
-                breakpoint: 3560,
-                settings: {
-                    slidesToShow: 8,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 1860,
-                settings: {
-                    slidesToShow: actors.length-1 <= 6 ? actors.length : 6,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 1424,
-                settings: {
-                    slidesToShow: actors.length-1 <= 5 ? actors.length :  5,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: actors.length-1 <= 4 ? actors.length :  4,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 920,
-                settings: {
-                    slidesToShow: actors.length-1 <= 3 ? actors.length :  3,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 700,
-                settings: {
-                    slidesToShow: actors.length-1 <= 2 ? actors.length :  2,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: actors.length-1 <= 1 ? actors.length :  1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    };
 
     return (
         <>

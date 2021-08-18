@@ -1,7 +1,6 @@
 import Head from 'next/head'
 
 import homeStyles from '../styles/Home.module.scss'
-import MediaMovieList from "../components/mediaList/MediaMovieList"
 import {MovieMediaList, TvMediaList} from "../components/mediaList/MediaList"
 import Header from '../components/header/Header'
 
@@ -32,7 +31,7 @@ export default function Home(props) {
   return (
     
     <>
-      <Header text="Home"/>      
+       <Header text="Home"/>      
        <MovieMediaList  mediaType="movie" media={props.movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" overlay={true}/>
        <TvMediaList mediaType="tv" media={props.tv.results} heading="TV" subHeading="Discover new TV Shows picked just for you" overlay={true}/>
     </>

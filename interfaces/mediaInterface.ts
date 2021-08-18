@@ -50,22 +50,23 @@ export interface imageInterface {
 }
 
 /*Media Video Interface*/
-
 export interface videoInterface {
-  name:string;
-  
-  key:string;
-  
-  site:string;
-  
-  size:number;
-  
-  type:string;
-  
-  official:boolean;
-  
-  published_at:string;
-  
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+  id: string;
+}
+
+/*Media reviews interface */
+export interface reviewInterface{
+  author:string,
+  content:string,
+  created_at:string,
   id:string;
-  
+  updated_at:string,
+  url:string
 }

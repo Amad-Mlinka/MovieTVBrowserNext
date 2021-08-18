@@ -113,6 +113,7 @@ const Movie = ({ data }: dataProp) => {
                             </div>
                         </div>
                     </div>
+                    
                     {/*Third Column */}
                     <div className={`${movieDetailsStyles.infoColumn} ${movieDetailsStyles.movieMedia}`}>
                         <div className={`${movieDetailsStyles.movieMediaContainer}`}>
@@ -172,8 +173,7 @@ export const getStaticPaths = async () => {
     const recommendedMoviesRes = await res1.json();
     const recommendedMovies = recommendedMoviesRes.results;
 
-    const res2 = await fetch(`
-            https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
+    const res2 = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
     const upcommingMoviesRes = await res2.json();
     const upcommingMovies = upcommingMoviesRes.results;
 
@@ -239,6 +239,11 @@ export const getStaticProps = async (context: contextInterface) => {
     const movieTrailerResults = await movieTrailerRes.json();
     const movieTrailer = movieTrailerResults.results;
 
+    const movieReviewsRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.apiKey}&language=en-US`)
+    const movieReviewsResults = await movieReviewsRes.json();
+    const movieReviews = movieReviewsResults.results;
+    console.log(movieReviews)
+
 
     const data = {
         movie,
@@ -246,7 +251,8 @@ export const getStaticProps = async (context: contextInterface) => {
         similarMovies,
         movieActors,
         movieCrew,
-        movieTrailer
+        movieTrailer,
+        movieReviews
 
     }
 

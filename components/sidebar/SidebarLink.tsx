@@ -1,10 +1,11 @@
 /*Imports */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import * as reduxHooks from "../../hooks/reduxHooks"
 import { changeTerm, resetTerm } from '../../store/searchSlice';
 import { changeOpen } from '../../store/sidebarSlice';
 import store, { RootState } from '../../store/store';
+import Search from './Search';
 
 /*Material components*/
 
@@ -20,6 +21,7 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 /*Styles*/
 import sidebarStyles from "../../styles/Sidebar.module.scss"
+
 
 interface Dropdown {
     title:string,
@@ -39,35 +41,17 @@ interface SidebarLinkProps {
 
 
 const SidebarLink = ({type,url,text,icon,dropdownLinks}:SidebarLinkProps) => {
-    const dispatch = reduxHooks.useAppDispatch()
-    const searchTerm:string = reduxHooks.useAppSelector((state:RootState) => state.searchReducer.term)
+   
     const sidebar:boolean = reduxHooks.useAppSelector((state: RootState) =>state.sidebarReducer.open)
 
-    const changeTermHandler = (term:string) => {
-        dispatch(changeTerm(term))
-    }
-
-    const resetTermHandler = () => {
-        dispatch(resetTerm())
-    }
-
+    
     const types = ["search", "singleLink", "dropdown"]
     const [dropdownOpen, setDropdownOpen] = useState(false);
     return (
         <>
             {
                 type === types[0] ?
-                    <li className={`${sidebarStyles.sidebarLink} ${sidebar ? sidebarStyles.sidebarLinkOpen : ""} ${sidebarStyles.sidebarSearch} ${sidebar ? sidebarStyles.sidebarSearchActive : ""}`} onClick={() => {
-                    }}>
-                        <div className={` ${sidebarStyles.searchContainer}`} >
-                            <SearchIcon className={sidebarStyles.searchIcon} />
-                            <input type="search" name="searchBar" value={searchTerm || ""} className={`${sidebarStyles.searchBar} ${!sidebar ? sidebarStyles.searchBarClosed : ""}`}
-                                onChange={(e) => {
-                                    changeTermHandler(e.target.value)
-                                }}  ></input>
-                            <DoubleArrowIcon className={sidebarStyles.searchIconConfirm} />
-                        </div>
-                    </li>
+                   <Search/>
                     :
                     type === types[1] ?
                         <Link href={url ? url : "/"}>

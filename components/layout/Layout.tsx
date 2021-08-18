@@ -13,14 +13,11 @@ import Content from '../content/Content'
 
 /*Interfaces */
 import ChildrenElementProps from "../../interfaces/childrenInterface"
-
-
-
-
-
-
+import { useRouter } from 'next/router'
 
 const Layout = ({ children }:ChildrenElementProps) => {
+    const router=useRouter()
+    console.log(router.pathname)
     return (
         <>
             <Head>
