@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../../components/header/Header'
-import MediaTvList from '../../components/mediaList/MediaTvList'
 import { tvInterface } from '../../interfaces/mediaInterface'
 import moviesStyle from "../../styles/Movies.module.scss"
+import { TvMediaList } from '../../components/mediaList/MediaList'
 
 interface tvHomeInterface {
     topShows:tvInterface[],
@@ -17,8 +17,8 @@ const index = ({topShows,currentShows,latestShows}:tvHomeInterface) => {
         <>
            <Header text="Shows"/>
             <div className={moviesStyle.buffer}></div>
-            <MediaTvList mediaType="movie" media={topShows} heading="Top rated Shows" subHeading="Shows other people like" overlay={true}/>
-            <MediaTvList mediaType="movie" media={currentShows} heading="Popular Shows" subHeading="Popular Shows today" overlay={true}/>
+            <TvMediaList mediaType="movie" media={topShows} heading="Top rated Shows" subHeading="Shows other people like" overlay={true}/>
+            <TvMediaList mediaType="movie" media={currentShows} heading="Popular Shows" subHeading="Popular Shows today" overlay={true}/>
 
         </>
     )
