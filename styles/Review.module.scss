@@ -1,0 +1,49 @@
+@import "general.scss";
+.review {
+    width: 70%;
+    background: $base-color;
+    color: $tertiary-color;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 5px 5px -3px rgba(0, 0, 0, 0.75);
+    max-height: 300px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+.open{
+    height: auto !important;
+    max-height: 999px;
+}
+.reviewHeader{
+    display: flex;
+    justify-content: space-between;
+}
+.reviewDetails {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.reviewRating{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.reviewAuthor {
+    color: $secondary-color;
+    margin: 0;
+}
+.reviewDate{
+    font-size: 10px;
+    color:$tertiary-color
+}
+.reviewContent {
+
+}

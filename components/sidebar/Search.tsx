@@ -35,11 +35,6 @@ const Search = () => {
         dispatch(resetTerm())
     }
 
-    useEffect(() => {
-        console.log(searchTerm);
-      }, [searchTerm]);
-
-
     return (
         <li className={`${sidebarStyles.sidebarLink} ${sidebar ? sidebarStyles.sidebarLinkOpen : ""} ${sidebarStyles.sidebarSearch} ${sidebar ? sidebarStyles.sidebarSearchActive : ""}`} onClick={() => {
         }}>

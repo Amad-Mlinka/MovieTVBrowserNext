@@ -1,5 +1,5 @@
 /*Imports */
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Image from "next/image"
 import _, { map } from 'underscore';
 import { useRouter } from 'next/router'
@@ -18,11 +18,10 @@ import { Rating } from '@material-ui/core'
 import movieDetailsStyles from "../../styles/MovieDetail.module.scss"
 
 /*Interfaces */
-import { movieInterface, genreInterface, videoInterface, imagesInterface, imageInterface } from '../../interfaces/mediaInterface'
+import { movieInterface, genreInterface, videoInterface, imagesInterface, imageInterface, reviewInterface } from '../../interfaces/mediaInterface'
 import { ActorP, CrewP } from "../../interfaces/peopleInterface"
-
-
-
+import ReviewList from '../../components/reviewList/ReviewList';
+import store from '../../store/store';
 
 
 interface contextInterface {
@@ -38,7 +37,8 @@ interface movieDetailsProp {
     movieActors: ActorP[],
     movieCrew: CrewP[],
     movieImages: imagesInterface,
-    movieTrailer: videoInterface[]
+    movieTrailer: videoInterface[],
+    movieReviews: reviewInterface[]
 }
 interface dataProp {
     data: movieDetailsProp
@@ -50,10 +50,12 @@ const Movie = ({ data }: dataProp) => {
     const similarMovies = data.similarMovies
     const actors = data.movieActors
     const crew = data.movieCrew
+    const reviews = data.movieReviews
     const images = data.movieImages
     const trailer = data.movieTrailer.filter(movie => {
         return movie.type === "Trailer"
     })
+
 
     const imageWidth = 1280
     const backdropImageUrl = `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`
@@ -93,7 +95,6 @@ const Movie = ({ data }: dataProp) => {
                                         </li>
                                     ))}
                                 </ul>
-
                             </div>
                             <div className={movieDetailsStyles.synopsis}>
                                 <h1 className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.synopsisTitle}`} >Synopsis</h1>
@@ -135,10 +136,7 @@ const Movie = ({ data }: dataProp) => {
                                         <h1>No images</h1>
                                     }
                                 </div>
-                            </SRLWrapper>
-
-
-                            
+                            </SRLWrapper>                            
                         </div>
                     </div>
                 </div>
@@ -149,6 +147,7 @@ const Movie = ({ data }: dataProp) => {
 
                 </div>
                 <div className={movieDetailsStyles.review}>
+                    <ReviewList reviews={reviews}/>
 
                 </div>
                 <div className={movieDetailsStyles.relatedMovies}>
@@ -163,23 +162,27 @@ const Movie = ({ data }: dataProp) => {
 
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async (context:any) => {
+    const state = store.getState();
 
-    const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const discovermoviesRes = await res.json();
+    const data = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
+    const discovermoviesRes = await data.json();
     const discovermovies = discovermoviesRes.results;
 
-    const res1 = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const recommendedMoviesRes = await res1.json();
+    const data1 = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
+    const recommendedMoviesRes = await data1.json();
     const recommendedMovies = recommendedMoviesRes.results;
 
-    const res2 = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const upcommingMoviesRes = await res2.json();
+    const data2 = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
+    const upcommingMoviesRes = await data2.json();
     const upcommingMovies = upcommingMoviesRes.results;
 
-    const res3 = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const popularMoviesRes = await res3.json();
+    const data3 = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
+    const popularMoviesRes = await data3.json();
     const popularMovies = popularMoviesRes.results;
+
+    console.log(state.searchReducer.term)
+
 
 
 
@@ -242,7 +245,7 @@ export const getStaticProps = async (context: contextInterface) => {
     const movieReviewsRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.apiKey}&language=en-US`)
     const movieReviewsResults = await movieReviewsRes.json();
     const movieReviews = movieReviewsResults.results;
-    console.log(movieReviews)
+
 
 
     const data = {

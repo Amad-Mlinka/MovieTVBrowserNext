@@ -37,6 +37,67 @@ const ActorList = (props: actorListProps) => {
         sliderRef.current.slickNext();
     }
 
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        variableWidth: false,
+        arrows: false,
+        responsive: [
+          {
+            breakpoint: 3560,
+            settings: {
+              slidesToShow: props.actors.length - 1 < 8 ? props.actors.length : 8,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 1860,
+            settings: {
+              slidesToShow: props.actors.length - 1 < 6 ? props.actors.length : 6,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 1424,
+            settings: {
+              slidesToShow: props.actors.length - 1 < 5 ? props.actors.length : 5,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: props.actors.length - 1 < 4 ? props.actors.length : 4,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 920,
+            settings: {
+              slidesToShow: props.actors.length - 1 < 3 ? props.actors.length : 3,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 700,
+            settings: {
+              slidesToShow: props.actors.length - 1 < 2 ? props.actors.length : 2,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      };
+
     return (
         <>
             <div className={actorListStyles.actorList} >

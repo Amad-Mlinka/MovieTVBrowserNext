@@ -19,7 +19,6 @@ import Link from 'next/link';
 
 
 
-
 const Navbar = () => {
 
     const dispatch = reduxHooks.useAppDispatch()

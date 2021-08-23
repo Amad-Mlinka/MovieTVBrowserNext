@@ -17,7 +17,6 @@ import { useRouter } from 'next/router'
 
 const Layout = ({ children }:ChildrenElementProps) => {
     const router=useRouter()
-    console.log(router.pathname)
     return (
         <>
             <Head>

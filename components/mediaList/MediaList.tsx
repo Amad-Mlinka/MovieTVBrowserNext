@@ -49,6 +49,67 @@ export const MovieMediaList = ({ media, heading, subHeading, overlay }: movieLis
         sliderRef.current.slickNext();
     }
 
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        variableWidth: false,
+        arrows: false,
+        responsive: [
+          {
+            breakpoint: 3560,
+            settings: {
+              slidesToShow: media.length - 1 < 8 ? media.length : 8,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 1860,
+            settings: {
+              slidesToShow: media.length - 1 < 6 ? media.length : 6,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 1424,
+            settings: {
+              slidesToShow: media.length - 1 < 5 ? media.length : 5,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: media.length - 1 < 4 ? media.length : 4,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 920,
+            settings: {
+              slidesToShow: media.length - 1 < 3 ? media.length : 3,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 700,
+            settings: {
+              slidesToShow: media.length - 1 < 2 ? media.length : 2,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      };
+
     
     return (
         <>
