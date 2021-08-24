@@ -15,11 +15,15 @@ import LanguageIcon from '@material-ui/icons/Language';
 
 /*Styles*/
 import sidebarStyles from "../../styles/Sidebar.module.scss"
+import { useRouter } from 'next/router'
 
 
 
 
 const Sidebar = () => {
+    const router = useRouter()
+    const url = router.pathname.split("/")[1];
+    console.log({ url })
 
     const dispatch = reduxHooks.useAppDispatch()
     const sidebar: boolean = reduxHooks.useAppSelector((state: RootState) => state.sidebarReducer.open)
@@ -39,16 +43,24 @@ const Sidebar = () => {
 
             <div className={sidebarStyles.sidebarMenu}>
                 <ul className={`${sidebarStyles.sidebarList}`}>
+                    <div className={`${sidebarStyles.sidebarListItem} ${url == "search" && sidebarStyles.sidebarListItemActive}`}>
+                        <SidebarLink type="search" />
+                    </div>
+                    <div className={`${sidebarStyles.sidebarListItem} ${url == "" && sidebarStyles.sidebarListItemActive}`}>
+                        <SidebarLink type="singleLink" text="Home" icon={<HomeIcon />} url="/" />
+                    </div>
 
-                    <SidebarLink type="search" />
+                    <div className={`${sidebarStyles.sidebarListItem} ${url == "movies" && sidebarStyles.sidebarListItemActive}`}>
+                        <SidebarLink type="singleLink" text="Movies" icon={<MovieIcon />} url="/movies" />
+                    </div>
 
-                    <SidebarLink type="singleLink" text="Home" icon={<HomeIcon />} url="/" />
+                    <div className={`${sidebarStyles.sidebarListItem} ${url == "tv" && sidebarStyles.sidebarListItemActive}`}>
+                        <SidebarLink type="singleLink" text="TV Shows" icon={<TvIcon />} url="/tv" />
+                    </div>
 
-                    <SidebarLink type="singleLink" text="Movies" icon={<MovieIcon />} url="/movies" />
-
-                    <SidebarLink type="singleLink" text="TV Shows" icon={<TvIcon />} url="/tv" />
-
-                    <SidebarLink type="dropdown" text="Languages" icon={<LanguageIcon />} dropdownLinks={languageDropdown} />
+                    <div className={`${sidebarStyles.sidebarListItem}`}>
+                        <SidebarLink type="dropdown" text="Languages" icon={<LanguageIcon />} dropdownLinks={languageDropdown} />
+                    </div>
 
                 </ul>
             </div>

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
-import {searchTermState} from "./searchTermInterface"
+import {searchTermState} from "../interfaces/searchTermInterface"
 
 // Define the initial state using that type
 const initialState: searchTermState = {

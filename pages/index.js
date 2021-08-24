@@ -1,16 +1,19 @@
 import Head from 'next/head'
 
 import homeStyles from '../styles/Home.module.scss'
-import {MovieMediaList, TvMediaList} from "../components/mediaList/MediaList"
+import { MovieMediaList, TvMediaList } from "../components/mediaList/MediaList"
 import Header from '../components/header/Header'
+
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import Slider from "react-slick";
 
-const tvApi=`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
-const movieApi=`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
+const tvApi = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
+const movieApi = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
+
+
 
 export const getStaticProps = async () => {
   const res1 = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
@@ -20,8 +23,10 @@ export const getStaticProps = async () => {
   const tv = await res2.json();
 
   return {
-      props: { movies,tv }
+    props: { movies, tv }
   }
+
+
 }
 
 
@@ -29,11 +34,11 @@ export const getStaticProps = async () => {
 export default function Home(props) {
 
   return (
-    
+
     <>
-       <Header text="Home"/>      
-       <MovieMediaList  mediaType="movie" media={props.movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" overlay={true}/>
-       <TvMediaList mediaType="tv" media={props.tv.results} heading="TV" subHeading="Discover new TV Shows picked just for you" overlay={true}/>
+      <Header text="Home" />
+      <MovieMediaList mediaType="movie" media={props.movies.results} heading="Movies" subHeading="Discover new Movies picked just for you" overlay={true} />
+      <TvMediaList mediaType="tv" media={props.tv.results} heading="TV" subHeading="Discover new TV Shows picked just for you" overlay={true} />
     </>
 
   )

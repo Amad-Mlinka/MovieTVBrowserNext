@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import pageSlice from './pageSlice'
 import searchSlice from './searchSlice'
 import sidebarSlice from "./sidebarSlice"
 
@@ -7,7 +8,9 @@ const rootReducer = combineReducers({search: searchSlice, sidebar: sidebarSlice}
  const store:any = configureStore({
   reducer: {
     searchReducer: searchSlice,
-    sidebarReducer: sidebarSlice
+    sidebarReducer: sidebarSlice,
+    pageReducer:pageSlice
+
 
   },
   middleware: getDefaultMiddleware =>

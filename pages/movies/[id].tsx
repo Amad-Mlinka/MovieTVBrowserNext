@@ -22,6 +22,7 @@ import { movieInterface, genreInterface, videoInterface, imagesInterface, imageI
 import { ActorP, CrewP } from "../../interfaces/peopleInterface"
 import ReviewList from '../../components/reviewList/ReviewList';
 import store from '../../store/store';
+import { storeInterface } from '../../interfaces/storeInterface';
 
 
 interface contextInterface {
@@ -163,7 +164,7 @@ const Movie = ({ data }: dataProp) => {
 }
 
 export const getStaticPaths = async (context:any) => {
-    const state = store.getState();
+    const state:storeInterface = store.getState();
 
     const data = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
     const discovermoviesRes = await data.json();
@@ -180,8 +181,6 @@ export const getStaticPaths = async (context:any) => {
     const data3 = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
     const popularMoviesRes = await data3.json();
     const popularMovies = popularMoviesRes.results;
-
-    console.log(state.searchReducer.term)
 
 
 

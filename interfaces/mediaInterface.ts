@@ -77,3 +77,11 @@ interface authorDetailsInterface {
   avatar_path:string,
   rating:number
 }
+
+/*Media Fetch Results */
+export interface fetchInterface{
+  page:number,
+  results:movieInterface[] | tvInterface[],
+  total_pages:number,
+  total_results:number
+}
