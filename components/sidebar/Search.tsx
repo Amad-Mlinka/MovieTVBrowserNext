@@ -55,7 +55,7 @@ const Search = () => {
                     onChange={(e) => {
                         changeTermHandler(e.target.value)
                     }}  ></input>
-                <Link href={`/search/${url || "movies"}/1`}><DoubleArrowIcon className={sidebarStyles.searchIconConfirm} /></Link>
+                <Link href={`/search/${url=="tv" ? url : "movies"}/1`}><DoubleArrowIcon className={sidebarStyles.searchIconConfirm} /></Link>
             </div>
         </li>
     )

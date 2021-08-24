@@ -29,11 +29,11 @@ const Search = (props:any) => {
 export const getServerSideProps = async (context: any) => {
     const state:storeInterface = store.getState()
     const {params,req,res} = context;
-    console.log(res)
+    console.log("bla"+state.searchReducer.term)
 
 
 
-    const movies = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.apiKey}&query=${state}&page=${params}`);
+    const movies = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.apiKey}&query=${state.searchReducer.term}&page=${params}`);
     const discovermoviesRes = await movies.json();
     const moviesResult = discovermoviesRes;
 
