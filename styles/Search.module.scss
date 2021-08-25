@@ -1,0 +1,18 @@
+@import "general.scss";
+
+.searchList{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    .searchListContainer{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .searchListItem{
+        margin: 10px;
+        
+    }
+}
+

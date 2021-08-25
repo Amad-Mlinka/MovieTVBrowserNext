@@ -42,20 +42,26 @@ const Search = () => {
         dispatch(resetTerm())
     }
 
+    const sidebarToggle = () => {
+        dispatch(changeOpen())
+    }
+
     useEffect(() => {
         console.log({searchTerm})
     }, [searchTerm])
 
     return (
         <li className={`${sidebarStyles.sidebarLink} ${sidebar ? sidebarStyles.sidebarLinkOpen : ""} ${sidebarStyles.sidebarSearch} 
-        ${sidebar ? sidebarStyles.sidebarSearchActive : ""}`}>
+        ${sidebar ? sidebarStyles.sidebarSearchActive : ""}`} onClick={()=>{
+            !sidebar ? sidebarToggle(): ""
+        }}>
             <div className={` ${sidebarStyles.searchContainer}`} >
                 <SearchIcon className={sidebarStyles.searchIcon} />
                 <input type="search" name="searchBar" value={searchTerm || ""} className={`${sidebarStyles.searchBar} ${!sidebar ? sidebarStyles.searchBarClosed : ""}`}
                     onChange={(e) => {
                         changeTermHandler(e.target.value)
                     }}  ></input>
-                <Link href={`/search/${url=="tv" ? url : "movies"}/1`}><DoubleArrowIcon className={sidebarStyles.searchIconConfirm} /></Link>
+                <Link href={`/search/${url=="tv" ? url : "movies"}`}><DoubleArrowIcon className={sidebarStyles.searchIconConfirm} /></Link>
             </div>
         </li>
     )
