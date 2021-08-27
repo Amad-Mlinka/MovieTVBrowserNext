@@ -2,6 +2,7 @@
 
 .searchList{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
     .searchListContainer{
@@ -11,8 +12,16 @@
         justify-content: space-around;
     }
     .searchListItem{
-        margin: 10px;
-        
+        margin: 10px;        
+    }
+    .searchListPaginationContainer{
+        list-style: none;
+        display: flex;
+        .searchListPaginationItem{
+            cursor: pointer;
+            margin: 0px 5px;
+            color: $tertiary-color;
+        }
     }
 }
 
