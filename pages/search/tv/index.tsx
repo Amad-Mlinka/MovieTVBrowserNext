@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Header from '../../../components/header/Header'
-import { fetchInterface, movieInterface, tvInterface } from '../../../interfaces/mediaInterface'
+import { fetchInterface,  tvInterface } from '../../../interfaces/mediaInterface'
 import { storeInterface } from '../../../interfaces/storeInterface'
 import store, { RootState } from '../../../store/store'
 import * as reduxHooks from "../../../hooks/reduxHooks"
@@ -27,8 +27,8 @@ const Search = (props: any) => {
     const { data: searchData, error: searchError } = useSWR(() =>
 
         searchTerm == "" ?
-            `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.apiKey}&page=${page}` :
-            `https://api.themoviedb.org/3/search/movie?api_key=${process.env.apiKey}&query=${searchTerm}&page=${page}`
+            `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.apiKey}&page=${page}` :
+            `https://api.themoviedb.org/3/search/tv?api_key=${process.env.apiKey}&query=${searchTerm}&page=${page}`
 
 
         , fetcher)
@@ -37,7 +37,7 @@ const Search = (props: any) => {
 
 
 
-    const movies: movieInterface[] = searchData && searchData.results
+    const tv: tvInterface[] = searchData && searchData.results
     if (searchError) return <div>failed to load</div>
     if (!searchData) return <div><Loading></Loading></div>
     return (
@@ -45,17 +45,17 @@ const Search = (props: any) => {
             <Header text="Search" />
             <div className={searchListStyles.searchList}>
                 <div className={searchListStyles.searchListContainer}>
-                    {movies ?
-                        movies.map((movie: movieInterface, i: number) =>
+                    {tv ?
+                        tv.map((tv: tvInterface, i: number) =>
                         (<div key={i} className={searchListStyles.searchListItem}>
-                            <Media image={movie.poster_path} id={movie.id} title={movie.title} overlay={true} year={movie.release_date} type={"movies"} rating={movie.vote_average} />
+                            <Media image={tv.poster_path} id={tv.id} title={tv.name} overlay={true} year={tv.first_air_date} type={"tv"} rating={tv.vote_average} />
                         </div>
                         )
-                        ) : <h1>No movies</h1>}
+                        ) : <h1>No tv</h1>}
                 </div>
                 <div className={searchListStyles.searchListPagination}>
                     <ul className={searchListStyles.searchListPaginationContainer}>
-                        {movies && movies.length > 0 ? searchData.page == 1 ?
+                        {tv && tv.length > 0 ? searchData.page == 1 ?
                             <>
                                 <li className={searchListStyles.searchListPaginationItem} onClick={() => setPage(searchData.page)}>{searchData.page}</li>
                                 {searchData.total_pages > searchData.page + 1 && <li className={searchListStyles.searchListPaginationItem} onClick={() => setPage(searchData.page + 1)}>{searchData.page + 1}</li>}

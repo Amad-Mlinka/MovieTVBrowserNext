@@ -18,8 +18,9 @@ import { Rating } from '@material-ui/core'
 import tvDetailsStyles from "../../styles/TvDetail.module.scss"
 
 /*Interfaces */
-import { tvInterface, genreInterface, videoInterface, imagesInterface, imageInterface } from '../../interfaces/mediaInterface'
+import { tvInterface, genreInterface, videoInterface, imagesInterface, imageInterface, reviewInterface } from '../../interfaces/mediaInterface'
 import { ActorP, CrewP } from "../../interfaces/peopleInterface"
+import ReviewList from '../../components/reviewList/ReviewList';
 
 
 
@@ -37,7 +38,8 @@ interface tvDetailsProp {
     tvActors: ActorP[],
     tvCrew: CrewP[],
     tvImages: imagesInterface,
-    tvTrailer: videoInterface[]
+    tvTrailer: videoInterface[],
+    tvReviews: reviewInterface[]
 }
 interface dataProp {
     data: tvDetailsProp
@@ -49,6 +51,7 @@ const tv = ({ data }: dataProp) => {
     const actors = data.tvActors
     const crew = data.tvCrew
     const images = data.tvImages
+    const reviews = data.tvReviews
     const trailer = data.tvTrailer.filter(tv => {
         return tv.type === "Trailer" || null
     })
@@ -154,6 +157,7 @@ const tv = ({ data }: dataProp) => {
 
                 </div>
                 <div className={tvDetailsStyles.review}>
+                    <ReviewList reviews={reviews}/>
 
                 </div>
                 <div className={tvDetailsStyles.relatedtvs}>
@@ -168,65 +172,10 @@ const tv = ({ data }: dataProp) => {
 
 }
 
-export const getStaticPaths = async () => {
-
-    const res1 = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const topShowsRes = await res1.json();
-    const topShows = topShowsRes.results
 
 
-    const res2 = await fetch(`
-    https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const currentShowsRes = await res2.json();
-    const currentShows = currentShowsRes.results
-
-    const res3 = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const popularShowsRes = await res3.json();
-    const popularShows = popularShowsRes.results
-
-    const res4 = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const discoverShowsRes = await res4.json();
-    const discoverShows = discoverShowsRes.results
-
-
-
-
-    const paths1 = currentShows.map((tv: tvInterface) => {
-        return {
-            params: { id: tv.id.toString() }
-        }
-    })
-
-    const paths2 = popularShows.map((tv: tvInterface) => {
-        return {
-            params: { id: tv.id.toString() }
-        }
-    })
-    const paths3 = discoverShows.map((tv: tvInterface) => {
-        return {
-            params: { id: tv.id.toString() }
-        }
-    })
-    const paths4 = topShows.map((tv: tvInterface) => {
-        return {
-            params: { id: tv.id.toString() }
-        }
-    })
-
-
-
-
-    var paths = [...paths1, ...paths2, ...paths3, ...paths4,]
-
-    return {
-        paths,
-        fallback: false
-    }
-}
-
-
-export const getStaticProps = async (context: contextInterface) => {
-    const id = context.params.id;
+export const getServerSideProps = async (context:any) => {
+    const id = context.query.id;
     const tvRes = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.apiKey}&language=en-US`)
     const tv = await tvRes.json();
 
@@ -244,12 +193,19 @@ export const getStaticProps = async (context: contextInterface) => {
     const tvTrailer = tvTrailerResults.results;
 
 
+    const tvReviewsRes = await fetch(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${process.env.apiKey}&language=en-US`)
+    const tvReviewsResults = await tvReviewsRes.json();
+    const tvReviews = tvReviewsResults.results;
+    
+
+
     const data = {
         tv,
         tvImages,
         tvActors,
         tvCrew,
-        tvTrailer
+        tvTrailer,
+        tvReviews
 
     }
 

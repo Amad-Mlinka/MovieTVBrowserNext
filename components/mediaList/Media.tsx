@@ -30,7 +30,7 @@ const Media = (props: mediaInterface) => {
   return (
     <>
       <div className={mediaStyles.media}>
-        <Link href={`/${props.type}/${props.id}`}>
+        <Link href={`/${props.type}/details?id=${props.id}`}>
           <div className={mediaStyles.mediaContainer}>
             <div className={mediaStyles.mediaImageContainer}>
               <Image className={mediaStyles.mediaImage}  alt="Media image" src={`${props.image ? imageUrl : placeholderUrl}`} width="200" height="300" />

@@ -23,6 +23,7 @@ import { ActorP, CrewP } from "../../interfaces/peopleInterface"
 import ReviewList from '../../components/reviewList/ReviewList';
 import store from '../../store/store';
 import { storeInterface } from '../../interfaces/storeInterface';
+import useSWR from 'swr';
 
 
 interface contextInterface {
@@ -47,6 +48,9 @@ interface dataProp {
 
 
 const Movie = ({ data }: dataProp) => {
+    const fetcher = (url: string) => fetch(url).then(res => res.json())
+    const router = useRouter();
+
     const movie: movieInterface = data.movie;
     const similarMovies = data.similarMovies
     const actors = data.movieActors
@@ -163,65 +167,10 @@ const Movie = ({ data }: dataProp) => {
 
 }
 
-export const getStaticPaths = async (context:any) => {
-    const state:storeInterface = store.getState();
-
-    const data = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const discovermoviesRes = await data.json();
-    const discovermovies = discovermoviesRes.results;
-
-    const data1 = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const recommendedMoviesRes = await data1.json();
-    const recommendedMovies = recommendedMoviesRes.results;
-
-    const data2 = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const upcommingMoviesRes = await data2.json();
-    const upcommingMovies = upcommingMoviesRes.results;
-
-    const data3 = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const popularMoviesRes = await data3.json();
-    const popularMovies = popularMoviesRes.results;
 
 
-
-
-
-    const paths1 = discovermovies.map((movie: movieInterface) => {
-        return {
-            params: { id: movie.id.toString() }
-        }
-    })
-
-    const paths2 = recommendedMovies.map((movie: movieInterface) => {
-        return {
-            params: { id: movie.id.toString() }
-        }
-    })
-    const paths3 = upcommingMovies.map((movie: movieInterface) => {
-        return {
-            params: { id: movie.id.toString() }
-        }
-    })
-    const paths4 = popularMovies.map((movie: movieInterface) => {
-        return {
-            params: { id: movie.id.toString() }
-        }
-    })
-
-
-
-
-    var paths = [...paths1, ...paths2, ...paths3, ...paths4,]
-
-    return {
-        paths,
-        fallback: false
-    }
-}
-
-
-export const getStaticProps = async (context: contextInterface) => {
-    const id = context.params.id;
+export const getServerSideProps = async (context:any) => {
+    const id = context.query.id;
     const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.apiKey}&language=en-US`)
     const movie = await movieRes.json();
 
