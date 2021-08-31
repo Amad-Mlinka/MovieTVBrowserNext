@@ -19,8 +19,9 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 
 /*Styles*/
-import sidebarStyles from "../../styles/Sidebar.module.scss"
+import sidebarStyles from "../../styles/Navigation/Sidebar.module.scss"
 import { useRouter } from 'next/router';
+
 
 
 const Search = () => {

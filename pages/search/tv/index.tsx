@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Header from '../../../components/header/Header'
-import { fetchInterface,  tvInterface } from '../../../interfaces/mediaInterface'
+import { fetchInterface,  genreInterface,  tvInterface } from '../../../interfaces/mediaInterface'
 import { storeInterface } from '../../../interfaces/storeInterface'
 import store, { RootState } from '../../../store/store'
 import * as reduxHooks from "../../../hooks/reduxHooks"
@@ -11,14 +11,12 @@ import Loading from '../../../components/loading/Loading'
 import Media from '../../../components/mediaList/Media'
 
 
-interface contextInterface {
-    params: fetchInterface
+interface propsInterface{
+    genreList:genreInterface[]
 }
 
-/*Dodati style i vidjeti da li smanjenje diva smanjuje i sam image !!! */
 
-
-const Search = (props: any) => {
+const Search = ({genreList}: propsInterface) => {
     const fetcher = (url: string) => fetch(url).then(res => res.json())
 
     const [page, setPage] = useState(1);
@@ -48,7 +46,7 @@ const Search = (props: any) => {
                     {tv ?
                         tv.map((tv: tvInterface, i: number) =>
                         (<div key={i} className={searchListStyles.searchListItem}>
-                            <Media image={tv.poster_path} id={tv.id} title={tv.name} overlay={true} year={tv.first_air_date} type={"tv"} rating={tv.vote_average} />
+                            <Media genres={genreList.filter((genre: genreInterface) => tv.genre_ids.includes(genre.id))} image={tv.poster_path} id={tv.id} title={tv.name} overlay={true} year={tv.first_air_date} type={"tv"} rating={tv.vote_average/2} />
                         </div>
                         )
                         ) : <h1>No tv</h1>}
@@ -97,6 +95,17 @@ const Search = (props: any) => {
     )
 }
 
+export const getStaticProps = async () => {
+    const genresRes = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.apiKey}&language=en-US`)
+    const genresObject = await genresRes.json();
+    const genreList=genresObject.genres
+
+    return {
+        props: {
+            genreList
+        }
+    }
+}
 
 
 

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { ActorP } from '../../interfaces/peopleInterface'
-import actorStyles from "../../styles/Actor.module.scss"
+import actorStyles from "../../styles/ActorList/Actor.module.scss"
 
 
 

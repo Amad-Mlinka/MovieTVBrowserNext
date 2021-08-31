@@ -18,7 +18,7 @@ import { Rating } from '@material-ui/core'
 import tvDetailsStyles from "../../styles/TvDetail.module.scss"
 
 /*Interfaces */
-import { tvInterface, genreInterface, videoInterface, imagesInterface, imageInterface, reviewInterface } from '../../interfaces/mediaInterface'
+import { tvInterface, genreInterface, videoInterface, imagesInterface, imageInterface, reviewInterface, tvDetailInterface } from '../../interfaces/mediaInterface'
 import { ActorP, CrewP } from "../../interfaces/peopleInterface"
 import ReviewList from '../../components/reviewList/ReviewList';
 
@@ -34,7 +34,7 @@ interface tvInfoInterface {
 }
 
 interface tvDetailsProp {
-    tv: tvInterface,
+    tv: tvDetailInterface,
     tvActors: ActorP[],
     tvCrew: CrewP[],
     tvImages: imagesInterface,
@@ -47,7 +47,7 @@ interface dataProp {
 
 
 const tv = ({ data }: dataProp) => {
-    const tv: tvInterface = data.tv;
+    const tv: tvDetailInterface = data.tv;
     const actors = data.tvActors
     const crew = data.tvCrew
     const images = data.tvImages

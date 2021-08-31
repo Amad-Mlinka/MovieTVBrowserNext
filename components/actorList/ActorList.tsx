@@ -13,7 +13,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 /*Import Plugins*/
 
 /*Styles*/
-import actorListStyles from '../../styles/ActorList.module.scss'
+import actorListStyles from '../../styles/ActorList/ActorList.module.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 

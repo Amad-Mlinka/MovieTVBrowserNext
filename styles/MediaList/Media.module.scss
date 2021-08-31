@@ -1,4 +1,4 @@
-@import "general.scss";
+@import "../Global/general.scss";
 
 .media {
    width: 100%;
@@ -38,6 +38,12 @@
     font-family:  Arimo,Arial,Helvetica,"Lucida Grande",sans-serif;
     font-size: 25px;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .mediaGenreText{
+    text-align: center;
   }
   .mediaRating {
     display: flex;

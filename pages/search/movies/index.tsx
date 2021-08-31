@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Header from '../../../components/header/Header'
-import { fetchInterface, movieInterface, tvInterface } from '../../../interfaces/mediaInterface'
+import { fetchInterface, genreInterface, movieInterface, tvInterface } from '../../../interfaces/mediaInterface'
 import { storeInterface } from '../../../interfaces/storeInterface'
 import store, { RootState } from '../../../store/store'
 import * as reduxHooks from "../../../hooks/reduxHooks"
@@ -11,14 +11,14 @@ import Loading from '../../../components/loading/Loading'
 import Media from '../../../components/mediaList/Media'
 
 
-interface contextInterface {
-    params: fetchInterface
+
+interface propsInterface{
+    genreList:genreInterface[]
 }
 
-/*Dodati style i vidjeti da li smanjenje diva smanjuje i sam image !!! */
 
-
-const Search = (props: any) => {
+const Search = ({genreList}: propsInterface) => {
+    console.log(genreList)
     const fetcher = (url: string) => fetch(url).then(res => res.json())
 
     const [page, setPage] = useState(1);
@@ -48,7 +48,7 @@ const Search = (props: any) => {
                     {movies ?
                         movies.map((movie: movieInterface, i: number) =>
                         (<div key={i} className={searchListStyles.searchListItem}>
-                            <Media image={movie.poster_path} id={movie.id} title={movie.title} overlay={true} year={movie.release_date} type={"movies"} rating={movie.vote_average} />
+                            <Media genres={genreList.filter((genre: genreInterface) => movie.genre_ids.includes(genre.id))} image={movie.poster_path} id={movie.id} title={movie.title} overlay={true} year={movie.release_date} type={"movies"} rating={movie.vote_average} />
                         </div>
                         )
                         ) : <h1>No movies</h1>}
@@ -98,6 +98,17 @@ const Search = (props: any) => {
 }
 
 
+export const getStaticProps = async () => {
+    const genresRes = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.apiKey}&language=en-US`)
+    const genresObject = await genresRes.json();
+    const genreList=genresObject.genres
+
+    return {
+        props: {
+            genreList
+        }
+    }
+}
 
 
 

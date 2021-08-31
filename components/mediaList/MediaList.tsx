@@ -2,7 +2,7 @@
 import Slider from "react-slick";
 import { useEffect, useRef } from 'react';
 import Media from "./Media"
-import { settings } from "../slider/SliderSettings";
+import useSWR from "swr";
 
 /*Material components*/
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -13,13 +13,16 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 /*Import Plugins*/
 
 /*Styles*/
-import mediaListStyles from '../../styles/MediaList.module.scss'
+import mediaListStyles from '../../styles/MediaList/MediaList.module.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 /*Interfaces */
-import { movieInterface } from '../../interfaces/mediaInterface';
+import { genreInterface, movieInterface } from '../../interfaces/mediaInterface';
 import { tvInterface } from '../../interfaces/mediaInterface';
+import { data } from "jquery";
+import Loading from "../loading/Loading";
+import fetcher from "../fetcher/Fetcher";
 
 
 interface movieListInterface {
@@ -39,7 +42,10 @@ interface tvListInterface {
 }
 
 
+
 export const MovieMediaList = ({ media, heading, subHeading, overlay }: movieListInterface) => {
+    const { data, error } = useSWR(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.apiKey}&language=en-US`, fetcher)
+
     const sliderRef = useRef<any>(<Slider />)
 
     const slidePrev = () => {
@@ -58,101 +64,111 @@ export const MovieMediaList = ({ media, heading, subHeading, overlay }: movieLis
         variableWidth: false,
         arrows: false,
         responsive: [
-          {
-            breakpoint: 3560,
-            settings: {
-              slidesToShow: media.length - 1 < 8 ? media.length : 8,
-              slidesToScroll: 2
+            {
+                breakpoint: 3560,
+                settings: {
+                    slidesToShow: media.length - 1 < 8 ? media.length : 8,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 1860,
+                settings: {
+                    slidesToShow: media.length - 1 < 6 ? media.length : 6,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 1424,
+                settings: {
+                    slidesToShow: media.length - 1 < 5 ? media.length : 5,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: media.length - 1 < 4 ? media.length : 4,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 920,
+                settings: {
+                    slidesToShow: media.length - 1 < 3 ? media.length : 3,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 700,
+                settings: {
+                    slidesToShow: media.length - 1 < 2 ? media.length : 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
             }
-          },
-          {
-            breakpoint: 1860,
-            settings: {
-              slidesToShow: media.length - 1 < 6 ? media.length : 6,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 1424,
-            settings: {
-              slidesToShow: media.length - 1 < 5 ? media.length : 5,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 1200,
-            settings: {
-              slidesToShow: media.length - 1 < 4 ? media.length : 4,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 920,
-            settings: {
-              slidesToShow: media.length - 1 < 3 ? media.length : 3,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 700,
-            settings: {
-              slidesToShow: media.length - 1 < 2 ? media.length : 2,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
         ]
-      };
+    };
 
-    
-    return (
-        <>
-            <div className={mediaListStyles.mediaList} >
-                <div className={mediaListStyles.content}>
-                    <div className={mediaListStyles.header}>
-                        <div className={mediaListStyles.headerContainer}>
-                            <div className={mediaListStyles.heading}>
-                                <span>{heading}</span>
-                            </div>
-                            <div className={mediaListStyles.subHeading}>
-                                <span>{subHeading}</span>
-                            </div>
-                        </div>
+    if (data) {
+        console.log(data)
 
-                        <div className={`${mediaListStyles.arrowsContainer}`}>
-                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slidePrev()} ><ChevronLeftIcon /></div>
-                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slideNext()} ><ChevronRightIcon /></div>
+        return (
+            <>
+                <div className={mediaListStyles.mediaList} >
+                    <div className={mediaListStyles.content}>
+                        <div className={mediaListStyles.header}>
+                            <div className={mediaListStyles.headerContainer}>
+                                <div className={mediaListStyles.heading}>
+                                    <span>{heading}</span>
+                                </div>
+                                <div className={mediaListStyles.subHeading}>
+                                    <span>{subHeading}</span>
+                                </div>
+                            </div>
+
+                            <div className={`${mediaListStyles.arrowsContainer}`}>
+                                <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slidePrev()} ><ChevronLeftIcon /></div>
+                                <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slideNext()} ><ChevronRightIcon /></div>
+                            </div>
+
+
                         </div>
+                        {
+                            <Slider {...settings} ref={sliderRef}>
+                                {
+                                    media.map((media: movieInterface) => (
+                                        <Media genres={data.genres.filter((genre: genreInterface) => media.genre_ids.includes(genre.id))} type="movies" key={media.id} overlay={overlay} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.title} year={media.release_date} />
+                                    )
+                                    )}
+
+
+                            </Slider>
+                        }
 
 
                     </div>
-                    {
-                        <Slider {...settings} ref={sliderRef}>
-                            {
-                            media.map((media: movieInterface) => (
-                                <Media type="movies" key={media.id} overlay={overlay} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.title} year={media.release_date} />
-                            )
-                            )}
-
-
-                        </Slider>
-                    }
-
-
                 </div>
-            </div>
-        </>
+            </>
 
-    )
+        )
+    } else {
+        return (
+            <Loading></Loading>
+        )
+    }
+
 }
 
 export const TvMediaList = ({ media, heading, subHeading, overlay }: tvListInterface) => {
+    const { data, error } = useSWR(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.apiKey}&language=en-US`, fetcher)
+
     const sliderRef = useRef<any>(<Slider />)
     const slidePrev = () => {
         sliderRef.current.slickPrev();
@@ -221,42 +237,47 @@ export const TvMediaList = ({ media, heading, subHeading, overlay }: tvListInter
             }
         ]
     };
-    return (
-        <>
-            <div className={mediaListStyles.mediaList} >
-                <div className={mediaListStyles.content}>
-                    <div className={mediaListStyles.header}>
-                        <div className={mediaListStyles.headerContainer}>
-                            <div className={mediaListStyles.heading}>
-                                <span>{heading}</span>
+    if (data) {
+        console.log(data)
+        return (
+            <>
+                <div className={mediaListStyles.mediaList} >
+                    <div className={mediaListStyles.content}>
+                        <div className={mediaListStyles.header}>
+                            <div className={mediaListStyles.headerContainer}>
+                                <div className={mediaListStyles.heading}>
+                                    <span>{heading}</span>
+                                </div>
+                                <div className={mediaListStyles.subHeading}>
+                                    <span>{subHeading}</span>
+                                </div>
                             </div>
-                            <div className={mediaListStyles.subHeading}>
-                                <span>{subHeading}</span>
+
+                            <div className={`${mediaListStyles.arrowsContainer}`}>
+                                <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slidePrev()} ><ChevronLeftIcon /></div>
+                                <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slideNext()} ><ChevronRightIcon /></div>
                             </div>
+
+
                         </div>
-
-                        <div className={`${mediaListStyles.arrowsContainer}`}>
-                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slidePrev()} ><ChevronLeftIcon /></div>
-                            <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => slideNext()} ><ChevronRightIcon /></div>
-                        </div>
-
-
+                        {
+                            <Slider {...settings} ref={sliderRef}>
+                                {media.map((media: tvInterface) => (
+                                    <Media genres={data.genres.filter((genre: genreInterface) => media.genre_ids.includes(genre.id))} type="tv" overlay={overlay} key={media.id} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.name} year={media.first_air_date} />
+                                ))}
+                            </Slider>
+                        }
                     </div>
-                    {
-                        <Slider {...settings} ref={sliderRef}>
-                            {media.map((media: tvInterface) => (
-                                <Media type="tv" overlay={overlay} key={media.id} id={media.id} image={media.poster_path} rating={Math.round((media.vote_average / 2) * 10) / 10} title={media.name} year={media.first_air_date} />
-                            ))}
-                        </Slider>
-                    }
                 </div>
-            </div>
-        </>
+            </>
 
-    )
+        )
+    }else{
+        return (
+            <Loading></Loading>
+        )
+    }
 }
-
-
 
 
 

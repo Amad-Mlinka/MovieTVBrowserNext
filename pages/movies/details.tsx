@@ -18,7 +18,7 @@ import { Rating } from '@material-ui/core'
 import movieDetailsStyles from "../../styles/MovieDetail.module.scss"
 
 /*Interfaces */
-import { movieInterface, genreInterface, videoInterface, imagesInterface, imageInterface, reviewInterface } from '../../interfaces/mediaInterface'
+import { movieInterface, genreInterface, videoInterface, imagesInterface, imageInterface, reviewInterface, movieDetailInterface } from '../../interfaces/mediaInterface'
 import { ActorP, CrewP } from "../../interfaces/peopleInterface"
 import ReviewList from '../../components/reviewList/ReviewList';
 import store from '../../store/store';
@@ -34,7 +34,7 @@ interface movieInfoInterface {
 }
 
 interface movieDetailsProp {
-    movie: movieInterface,
+    movie: movieDetailInterface,
     similarMovies: movieInterface[],
     movieActors: ActorP[],
     movieCrew: CrewP[],
@@ -51,7 +51,7 @@ const Movie = ({ data }: dataProp) => {
     const fetcher = (url: string) => fetch(url).then(res => res.json())
     const router = useRouter();
 
-    const movie: movieInterface = data.movie;
+    const movie: movieDetailInterface = data.movie;
     const similarMovies = data.similarMovies
     const actors = data.movieActors
     const crew = data.movieCrew
@@ -60,6 +60,7 @@ const Movie = ({ data }: dataProp) => {
     const trailer = data.movieTrailer.filter(movie => {
         return movie.type === "Trailer"
     })
+    console.log(movie)
 
 
     const imageWidth = 1280

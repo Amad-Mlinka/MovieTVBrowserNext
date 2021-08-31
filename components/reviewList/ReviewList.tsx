@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Slider from 'react-slick'
 import { reviewInterface } from '../../interfaces/mediaInterface' 
 import Review from './Review'
-import reviewListStyles from "../../styles/ReviewList.module.scss"
+import reviewListStyles from "../../styles/ReviewList/ReviewList.module.scss"
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';

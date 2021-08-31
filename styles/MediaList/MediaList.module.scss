@@ -1,9 +1,10 @@
-@import "general.scss";
-.actorList {
+@import "../Global/general.scss";
+
+.mediaList {
   margin: 20px 0px 55px 15px;
   width: 100%;
 }
-.mactor {
+.media {
   margin: auto;
   background: #8c8;
   counter-increment: gallery-cell;
@@ -81,3 +82,25 @@
   }
 
 }
+
+/*.arrows{
+      display: block;
+  }
+  .arrowsContainer{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+  }
+
+  .arrow{
+      cursor: pointer;
+      margin: 0px 10px;
+  }
+  .arrowLeft{
+    display: block;
+  }
+  .arrowRight{
+    display: block;
+  }
+  */

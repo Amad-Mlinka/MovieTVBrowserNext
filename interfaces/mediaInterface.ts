@@ -14,7 +14,7 @@ interface mediaInterface {
   vote_average: number,
   overview: string,
   original_language: string,
-  genres: genreInterface[],
+  
 }
 
 export interface movieInterface extends mediaInterface {
@@ -23,6 +23,15 @@ export interface movieInterface extends mediaInterface {
   title: string,
   release_date: string,
   video: boolean,
+  genre_ids: number[],
+}
+export interface movieDetailInterface extends mediaInterface {
+  adult: boolean,
+  original_title: string,
+  title: string,
+  release_date: string,
+  video: boolean,
+  genres:genreInterface[]
 }
 
 export interface tvInterface extends mediaInterface {
@@ -30,6 +39,14 @@ export interface tvInterface extends mediaInterface {
   origin_country: string[],
   name: string,
   original_name: string,
+  genre_ids: number[]
+}
+export interface tvDetailInterface extends mediaInterface {
+  first_air_date: string,
+  origin_country: string[],
+  name: string,
+  original_name: string,
+  genres:genreInterface[]
 }
 
 /*Media Images Interface*/

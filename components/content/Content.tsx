@@ -11,7 +11,7 @@ import { RootState } from '../../store/store'
 
 
 /*Styles*/
-import contentStyles from "../../styles/Content.module.scss"
+import contentStyles from "../../styles/Global/Content.module.scss"
 
 /*Interfaces */
 import ChildrenElementProps from "../../interfaces/childrenInterface"

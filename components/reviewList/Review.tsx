@@ -1,7 +1,7 @@
 import { Rating } from '@material-ui/core'
 import React, { useState } from 'react'
 import { reviewInterface } from '../../interfaces/mediaInterface'
-import reviewStyles from "../../styles/Review.module.scss"
+import reviewStyles from "../../styles/ReviewList/Review.module.scss"
 
 
 interface propInterface {

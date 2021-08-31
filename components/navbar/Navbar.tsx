@@ -13,7 +13,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 
 /*Styles*/
-import navStyles from "../../styles/Navbar.module.scss"
+import navStyles from "../../styles/Navigation/Navbar.module.scss"
 import Link from 'next/link';
 
 

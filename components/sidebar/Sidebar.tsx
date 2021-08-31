@@ -14,7 +14,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 /*Import Plugins*/
 
 /*Styles*/
-import sidebarStyles from "../../styles/Sidebar.module.scss"
+import sidebarStyles from "../../styles/Navigation/Sidebar.module.scss"
 import { useRouter } from 'next/router'
 
 

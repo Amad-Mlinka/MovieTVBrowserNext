@@ -7,7 +7,7 @@
 /*Import Plugins*/
 
 /*Styles*/
-import headerStyles from "../../styles/Header.module.scss"
+import headerStyles from "../../styles/Global/Header.module.scss"
 
 /*Interfaces */
 
