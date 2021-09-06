@@ -16,18 +16,18 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import actorListStyles from '../../styles/ActorList/ActorList.module.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { actorInterface } from '../../interfaces/movieInterface';
+
 
 /*Interfaces */
-import { ActorP } from '../../interfaces/peopleInterface';
 
 interface actorListProps {
-    actors: ActorP[]
+    actors: actorInterface[] | null | undefined
 }
 
 
 const ActorList = (props: actorListProps) => {
-
-    const actors = props.actors
+    const actors =props.actors
     const sliderRef = useRef<any>(<Slider />)
 
     const slidePrev = () => {
@@ -36,7 +36,7 @@ const ActorList = (props: actorListProps) => {
     const slideNext = () => {
         sliderRef.current.slickNext();
     }
-
+  
     const settings = {
         dots: false,
         infinite: true,
@@ -49,42 +49,42 @@ const ActorList = (props: actorListProps) => {
           {
             breakpoint: 3560,
             settings: {
-              slidesToShow: props.actors.length - 1 < 8 ? props.actors.length : 8,
+              slidesToShow: actors!=null ? (actors.length - 1 < 8 ? actors.length : 8) : 0,
               slidesToScroll: 2
             }
           },
           {
             breakpoint: 1860,
             settings: {
-              slidesToShow: props.actors.length - 1 < 6 ? props.actors.length : 6,
+              slidesToShow: actors!=null ? ( actors.length - 1 < 6 ? actors.length : 6) : 0,
               slidesToScroll: 2
             }
           },
           {
             breakpoint: 1424,
             settings: {
-              slidesToShow: props.actors.length - 1 < 5 ? props.actors.length : 5,
+              slidesToShow: actors!=null ? ( actors.length - 1 < 5 ? actors.length : 5) : 0,
               slidesToScroll: 2
             }
           },
           {
             breakpoint: 1200,
             settings: {
-              slidesToShow: props.actors.length - 1 < 4 ? props.actors.length : 4,
+              slidesToShow: actors!=null ? ( actors.length - 1 < 4 ? actors.length : 4) : 0,
               slidesToScroll: 2
             }
           },
           {
             breakpoint: 920,
             settings: {
-              slidesToShow: props.actors.length - 1 < 3 ? props.actors.length : 3,
+              slidesToShow: actors!=null ? ( actors.length - 1 < 3 ? actors.length : 3) : 0,
               slidesToScroll: 2
             }
           },
           {
             breakpoint: 700,
             settings: {
-              slidesToShow: props.actors.length - 1 < 2 ? props.actors.length : 2,
+              slidesToShow: actors!=null ? ( actors.length - 1 < 2 ? actors.length : 2) : 0,
               slidesToScroll: 2
             }
           },
@@ -113,25 +113,27 @@ const ActorList = (props: actorListProps) => {
                         </div>
 
                         <div className={`${actorListStyles.arrowsContainer}`}>
-                            <div className={`${actorListStyles.arrow} ${actorListStyles.arrowLeft}`} onClick={() => slidePrev()} ><ChevronLeftIcon /></div>
-                            <div className={`${actorListStyles.arrow} ${actorListStyles.arrowLeft}`} onClick={() => { slideNext(); console.log(sliderRef) }} ><ChevronRightIcon /></div>
+                            <div className={`${actorListStyles.arrow} ${actorListStyles.arrowLeft}`} onClick={() => {if(actors) slidePrev()}} ><ChevronLeftIcon /></div>
+                            <div className={`${actorListStyles.arrow} ${actorListStyles.arrowLeft}`} onClick={() => {if(actors) slideNext()}} ><ChevronRightIcon /></div>
                         </div>
 
 
                     </div>
 
                     {
+                      actors ?
                         <Slider {...settings} ref={sliderRef}>
-                            {
-                                actors.map((actor: ActorP) => 
+                            {actors &&
+                                actors.map((actor: actorInterface) => 
                                     (
-                                        <Actor key={actor.id} {...actor} />
+                                        <Actor key={actor.imdb_code} {...actor} />
 
                                     )
                                 )
                             }
 
                         </Slider>
+                        : <h1 className={actorListStyles.errorText}>No Cast Data</h1>
                     }
 
                 </div>

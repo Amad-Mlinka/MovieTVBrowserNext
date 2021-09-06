@@ -1,10 +1,10 @@
 import React from 'react'
 import Header from '../../components/header/Header'
 import { MovieMediaList } from '../../components/mediaList/MediaList'
-import { movieInterface } from '../../interfaces/mediaInterface'
+import { movieInterface } from '../../interfaces/movieListInterface'
 import moviesStyle from "../../styles/Movies.module.scss"
 
-interface movieHomeInterface {
+interface propsInterface {
     recommendedMovies:movieInterface[],
     discoverMovies:movieInterface[],
     popularMovies:movieInterface[],
@@ -12,7 +12,7 @@ interface movieHomeInterface {
 
 
 
-const index = ({recommendedMovies,discoverMovies,popularMovies}:movieHomeInterface) => {
+const index = ({recommendedMovies,discoverMovies,popularMovies}:propsInterface) => {
     return (
         <>
            <Header text="Movies"/>

@@ -1,18 +1,19 @@
 import React, { useRef } from 'react'
 import Slider from 'react-slick'
-import { reviewInterface } from '../../interfaces/mediaInterface' 
 import Review from './Review'
 import reviewListStyles from "../../styles/ReviewList/ReviewList.module.scss"
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { reviewInterface } from '../../interfaces/reviewInterface';
 
 interface propInterface {
-  reviews: reviewInterface[]
+  reviews: reviewInterface[] | null | undefined;
 }
 
 
 const ReviewList = (props: propInterface) => {
+  const reviews=props.reviews
   const sliderRef = useRef<any>(<Slider />)
 
   const slidePrev = () => {
@@ -34,42 +35,42 @@ const ReviewList = (props: propInterface) => {
       {
         breakpoint: 3560,
         settings: {
-          slidesToShow: props.reviews.length - 1 < 8 ? props.reviews.length : 8,
+          slidesToShow: reviews!=null ? (reviews.length - 1 < 8 ? reviews.length : 8) : 0,
           slidesToScroll: 2
         }
       },
       {
         breakpoint: 1860,
         settings: {
-          slidesToShow: props.reviews.length - 1 < 6 ? props.reviews.length : 6,
+          slidesToShow: reviews!=null ? ( reviews.length - 1 < 6 ? reviews.length : 6) : 0,
           slidesToScroll: 2
         }
       },
       {
         breakpoint: 1424,
         settings: {
-          slidesToShow: props.reviews.length - 1 < 5 ? props.reviews.length : 5,
+          slidesToShow: reviews!=null ? ( reviews.length - 1 < 5 ? reviews.length : 5) : 0,
           slidesToScroll: 2
         }
       },
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: props.reviews.length - 1 < 4 ? props.reviews.length : 4,
+          slidesToShow: reviews!=null ? ( reviews.length - 1 < 4 ? reviews.length : 4) : 0,
           slidesToScroll: 2
         }
       },
       {
         breakpoint: 920,
         settings: {
-          slidesToShow: props.reviews.length - 1 < 3 ? props.reviews.length : 3,
+          slidesToShow: reviews!=null ? ( reviews.length - 1 < 3 ? reviews.length : 3) : 0,
           slidesToScroll: 2
         }
       },
       {
         breakpoint: 700,
         settings: {
-          slidesToShow: props.reviews.length - 1 < 2 ? props.reviews.length : 2,
+          slidesToShow: reviews!=null ? ( reviews.length - 1 < 2 ? reviews.length : 2) : 0,
           slidesToScroll: 2
         }
       },
@@ -86,7 +87,7 @@ const ReviewList = (props: propInterface) => {
 
 
   return (
-    <>
+    <>{
       <div className={reviewListStyles.reviewList} >
         <div className={reviewListStyles.content}>
           <div className={reviewListStyles.header}>
@@ -106,20 +107,25 @@ const ReviewList = (props: propInterface) => {
 
 
           </div>
-          {
+          {reviews ? 
             <Slider {...settings} ref={sliderRef}>
               {
-                props.reviews.map((review: reviewInterface) => (
-                  <Review key={review.id} review={review} />
-                ))
+                reviews.map((review: reviewInterface, i: number) => {
+                  if (review.content != "" && review.rate != "")
+                    return (
+                      <Review key={i} review={review} />
+                    )
+                    else return null
+                })
               }
-            </Slider>
+            </Slider>:
+             <h1 className={reviewListStyles.errorText}>No Review Data</h1>
           }
 
 
         </div>
       </div>
-
+    }
     </>
 
   )

@@ -1,39 +1,41 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import useSWR from 'swr'
+import { actorInterface } from '../../interfaces/movieInterface'
 import { ActorP } from '../../interfaces/peopleInterface'
 import actorStyles from "../../styles/ActorList/Actor.module.scss"
+import fetcher from '../fetcher/Fetcher'
 
 
 
-interface actorInterface {
-  id: number,
-  name: string,
-  character: string,
-  profile_path: string
-}
 
-const Actor = ({ id, name, character, profile_path }: actorInterface) => {
-  const imageUrl = `https://image.tmdb.org/t/p/original${profile_path}`
+
+const Actor = (props: actorInterface) => {
+  const { data, error } = useSWR(`https://imdb-api.com/en/API/Images/k_l8gfe3i4/nm${props.imdb_code}`, fetcher)
+  if (error) return (<h1>Error</h1>);
+
+  if (!data) return (<h1>Loading...</h1>);
 
   return (
     <div className={actorStyles.actor}>
       <div className={actorStyles.actorContainer}>
         <div className={actorStyles.actorImageContainer}>
-          <Image className={actorStyles.actorImage} src={`${imageUrl}`} width="200" height="300" />
+         <Image src={data.items[0].image} height={200} width={200}/>
         </div>
 
         <div className={actorStyles.actorInfo}>
           <div className={actorStyles.actorTitle}>
-            <span className={actorStyles.actorNameText}> {name} as</span>
+            <span className={actorStyles.actorNameText}> {props.name} as</span>
           </div>
           <div className={actorStyles.actorYear}>
-            <span className={actorStyles.actorCharacterText}> {character}</span>
+            <span className={actorStyles.actorCharacterText}> {props.character_name}</span>
           </div>
         </div>
       </div>
     </div>
   )
 }
+
 
 export default Actor

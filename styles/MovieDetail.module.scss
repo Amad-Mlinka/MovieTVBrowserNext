@@ -25,14 +25,16 @@
     padding-top: 50px;
     .imageDetailsContainer {
         display: flex;
+
     }
     .imageContainer {
         display: none;
         margin: 20px;
-        /* .image {
-            margin-left: 50px;
-            max-width: 500px;
-        }*/
+         .image {
+            
+            border: 5px solid white;
+            line-height:0;
+        }
     }
     .details {
         margin: 0px 10px;
@@ -54,7 +56,7 @@
         text-align: center;
     }
     .title {
-        font-size: 50px;
+        font-size: 45px;
     }
     .year {
         font-size: 20px;
@@ -114,9 +116,12 @@
             justify-content: center;
             align-items: center;
             margin: 5px 6px;
+            cursor: pointer;
+            
             .movieMediaImage {
                 width: 100px;
                 height: auto;
+                
             }
         }
     }
@@ -133,7 +138,9 @@
 @include breakpoint(min-laptop) {
     .basicInfo {
         flex-direction: row;
-        
+        .imageDetailsContainer{
+            width: 100%;
+        }
         .details{
             display: flex;
             flex-direction: column;
@@ -155,8 +162,13 @@
         .movieMediaImages {
             .movieMediaImageContainer {
                 .movieMediaImage {
+                    position: relative;
                     width: 100%;
                     height: auto;
+                    transition: width .3s ease-in-out;
+                    &:hover{
+                        width: 120%;
+                    }
                 }
             }
         }
@@ -173,7 +185,7 @@
             width: 70%;
             .imageContainer {
                 display: block;
-                width: 40%;
+                width: 30%;
             }
             .details {
                 margin: 0px 10px;
@@ -189,7 +201,7 @@
         margin: 10px;
     }
     .title {
-        font-size: 50px;
+        font-size: 45px;
     }
     .year {
         font-size: 20px;
@@ -241,6 +253,7 @@
             .movieMediaImage {
                 width: 100%;
                 height: auto;
+                
             }
         }
     }

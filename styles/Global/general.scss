@@ -1,7 +1,12 @@
 @import "variables.scss";
-.dNone{
+.dNone {
     display: none !important;
 }
-.dBlock{
+.dBlock {
     display: block !important;
+}
+.errorText {
+    color: white;
+    font-size:20px;
+    margin:  0 auto;
 }
