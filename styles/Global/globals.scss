@@ -1,3 +1,4 @@
+@import "variables.scss";
 html, body {
   height: 100%;
 }
@@ -22,3 +23,17 @@ a {
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
+.css-cio0x1-MuiInputBase-root-MuiFilledInput-root:after{
+  border-bottom: 3px solid $secondary-color !important;
+}
+
+.css-au3a9q-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+  color: $secondary-color !important;
+}
+
+.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input{
+  color:$tertiary-color !important;
+}
+.css-e4w4as-MuiFormLabel-root-MuiInputLabel-root{
+  color: $tertiary-color !important;
+}

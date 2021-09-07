@@ -1,49 +1,45 @@
 import React from 'react'
 import Header from '../../components/header/Header'
 import { MovieMediaList } from '../../components/mediaList/MediaList'
-import { movieInterface } from '../../interfaces/movieListInterface'
+import { MovieListData } from '../../interfaces/movieListInterface'
 import moviesStyle from "../../styles/Movies.module.scss"
 
-interface propsInterface {
-    recommendedMovies:movieInterface[],
-    discoverMovies:movieInterface[],
-    popularMovies:movieInterface[],
-}
+interface propsInterface{
+    moviesRated:MovieListData,
+    moviesAdded:MovieListData,
+    moviesDownloaded:MovieListData
+  }
+  
 
 
-
-const index = ({recommendedMovies,discoverMovies,popularMovies}:propsInterface) => {
+const index = ({ moviesRated, moviesAdded, moviesDownloaded }: propsInterface) => {
     return (
         <>
-           <Header text="Movies"/>
+            <Header text="Movies" />
 
             <div className={moviesStyle.buffer}></div>
-            <MovieMediaList mediaType="movie" media={recommendedMovies} heading="Top rated Movies" subHeading="Movies other people like" overlay={true}/>
-            <MovieMediaList mediaType="movie" media={discoverMovies} heading="Currently in Theaters" subHeading="Know exactly what You are in for" overlay={true} />
-            <MovieMediaList mediaType="movie" media={popularMovies} heading="Popular Movies" subHeading="Popular movies today" overlay={true}/>
+            <MovieMediaList mediaType="movie" media={moviesRated.data.movies} heading="Top Rated Movies" subHeading="Discover the best movies" overlay={true} />
+            <MovieMediaList mediaType="movie" media={moviesAdded.data.movies} heading="Newly Added Movies" subHeading="Discover the newest movies" overlay={true} />
+            <MovieMediaList mediaType="movie" media={moviesDownloaded.data.movies} heading="Popular downloads" subHeading="Discover the most downloaded movies" overlay={true} />
         </>
     )
 }
 
 export const getStaticProps = async () => {
-    const res1 = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const recommendedMoviesRes = await res1.json();
-    const recommendedMovies=recommendedMoviesRes.results
+    const res1 = await fetch(`https://yts.mx/api/v2/list_movies.json?sort_by=rating`);
+    const moviesRated = await res1.json();
 
-    const res2 = await fetch(`
-    https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const discoverMoviesRes = await res2.json();
-    const discoverMovies=discoverMoviesRes.results
+    const res2 = await fetch(`https://yts.mx/api/v2/list_movies.json?sort_by=date_added`);
+    const moviesAdded = await res2.json();
 
-    const res3 = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    const popularMoviesRes = await res3.json();
-    const popularMovies=popularMoviesRes.results
-  
-  
-  
+    const res3 = await fetch(`https://yts.mx/api/v2/list_movies.json?sort_by=download_count`);
+    const moviesDownloaded = await res3.json();
+
     return {
-        props: { recommendedMovies, discoverMovies, popularMovies}
+        props: { moviesRated, moviesAdded, moviesDownloaded }
     }
-  }
+
+
+}
 
 export default index

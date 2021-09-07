@@ -1,3 +1,6 @@
 export interface searchTermState{
-    term:string
+    term:string,
+    genre:string,
+    rating:number | null,
+    sort:string | null
 }

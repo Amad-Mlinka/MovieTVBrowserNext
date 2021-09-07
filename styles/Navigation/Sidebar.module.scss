@@ -53,9 +53,19 @@
         align-items: center;
        
     }
+    .searchModifier{
+        height: 0;
+        overflow: hidden;
+        
+    }
     .sidebarLinkOpen {
         margin: 10px auto;
         transition: all 0.5s ease-in-out;
+        .searchModifier{
+            height: 100%;
+            transition: height 1.5s ease-in-out;
+
+        }
 
        
     }

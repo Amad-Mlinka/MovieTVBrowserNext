@@ -36,8 +36,7 @@ interface propsInterface {
 
 
 const Movie = (props: propsInterface) => {
-    console.log(props)
-
+    
     const movie = props.movieData.data.movie
     const actors = movie.cast
     const reviews = props.movieReviews.items
@@ -93,9 +92,9 @@ const Movie = (props: propsInterface) => {
                                     Trailer
                                 </h1>
                                 {trailer.length != 0 ?
-                                    <SRLWrapper>
-                                        <ReactPlayer width="300px" height="150px" url={`https://www.youtube.com/watch?v=${movie.yt_trailer_code}`} />
-                                    </SRLWrapper> :
+
+                                    <ReactPlayer width="300px" height="150px" url={`https://www.youtube.com/watch?v=${movie.yt_trailer_code}`} />
+                                    :
                                     <h1 className={movieDetailsStyles.errorText}>No trailer</h1>
                                 }
                             </div>

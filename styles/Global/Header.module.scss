@@ -5,10 +5,13 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    right: 12%;
+    margin-bottom: 15px;
+    
   }
   .heading {
-    background: #808080;
+    background-image: url("../../public/479017288a229d836f44.png");
+    background-repeat: no-repeat;
+    background-size:100%;
     position: fixed;
     width: 100%;
     align-items: center;
@@ -30,5 +33,4 @@
   .buffer {
     height: 50px;
     width: 100%;
-    margin-bottom: 10px;
   }

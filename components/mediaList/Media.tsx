@@ -23,7 +23,6 @@ interface propInterface {
 
 const Media = (props: propInterface) => {
   const movie=props.movie
-  //console.log(movie)
   const placeholderUrl = "/placeholder.png"
   return (
     <>
@@ -37,7 +36,7 @@ const Media = (props: propInterface) => {
                 <div className={mediaStyles.mediaOverlay}>
                   <div className={mediaStyles.mediaRating}>
                     <Rating readOnly value={movie.rating ? movie.rating/2 : 0} precision={0.1}></Rating>
-                    <span className={`${mediaStyles.mediaRatingText} ${mediaStyles.mediaOverlayItem}`}> {movie.rating ? movie.rating/2 : 0}/5</span>
+                    <span className={`${mediaStyles.mediaRatingText} ${mediaStyles.mediaOverlayItem}`}> {movie.rating ? movie.rating : 0}/10</span>
                   </div>
                   <div className={`${mediaStyles.mediaGenre} ${mediaStyles.mediaOverlayItem}`}>
 
