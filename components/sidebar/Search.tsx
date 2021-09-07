@@ -102,7 +102,7 @@ const Search = () => {
 
 
     return (
-        <li className={`${sidebarStyles.sidebarLink} ${sidebar ? sidebarStyles.sidebarLinkOpen : ""} ${sidebarStyles.sidebarSearch} 
+        <div className={`${sidebarStyles.sidebarLink} ${sidebar ? sidebarStyles.sidebarLinkOpen : ""} ${sidebarStyles.sidebarSearch} 
         ${sidebar ? sidebarStyles.sidebarSearchActive : ""}`} onClick={() => {
                 !sidebar ? sidebarToggle() : ""
             }}>
@@ -178,7 +178,7 @@ const Search = () => {
                 }
                 <button onClick={resetSortHandler} >Reset</button>
             </div>
-        </li>
+        </div>
     )
 }
 

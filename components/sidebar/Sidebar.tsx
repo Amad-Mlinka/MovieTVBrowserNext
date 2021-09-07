@@ -42,7 +42,7 @@ const Sidebar = () => {
         <div className={`${sidebarStyles.sidebar} ${sidebar ? sidebarStyles.sidebarOpen : ""}`}>
 
             <div className={sidebarStyles.sidebarMenu}>
-                <ul className={`${sidebarStyles.sidebarList}`}>
+                <div className={`${sidebarStyles.sidebarList}`}>
                     <div className={`${sidebarStyles.sidebarListItem} ${url == "search" && sidebarStyles.sidebarListItemActive}`}>
                         <SidebarLink type="search" />
                     </div>
@@ -62,7 +62,7 @@ const Sidebar = () => {
                         <SidebarLink type="dropdown" text="Languages" icon={<LanguageIcon />} dropdownLinks={languageDropdown} />
                     </div>
 
-                </ul>
+                </div>
             </div>
 
         </div>

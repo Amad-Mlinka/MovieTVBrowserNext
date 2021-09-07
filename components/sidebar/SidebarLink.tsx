@@ -55,17 +55,17 @@ const SidebarLink = ({type,url,text,icon,dropdownLinks}:SidebarLinkProps) => {
                     :
                     type === types[1] ?
                         <Link href={url ? url : "/"}>
-                            <li className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} style={{ margin: '10px auto' }}>
+                            <div className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} style={{ margin: '10px auto' }}>
                                 <div className={`${sidebarStyles.sidebarLinkMain} ${sidebar ? sidebarStyles.sidebarLinkMainOpen : ""}`}>
                                     {icon}
                                     <span className={`${sidebarStyles.sidebarText}  ${sidebar ? sidebarStyles.sidebarTextActive : ""}`}>{text}</span>
                                     <div className={sidebarStyles.singleLinkSpacer}><KeyboardArrowDownIcon /></div>
                                 </div>
-                            </li>
+                            </div>
                         </Link>
 
                         :
-                        <li className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} style={{ margin: '10px auto' }} onClick={() => {
+                        <div className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} style={{ margin: '10px auto' }} onClick={() => {
                             if (sidebar) setDropdownOpen(!dropdownOpen)
                         }
                         }>
@@ -84,7 +84,7 @@ const SidebarLink = ({type,url,text,icon,dropdownLinks}:SidebarLinkProps) => {
                                     }
                                 </ul>
                             </div>
-                        </li>
+                        </div>
             }
         </>
 
