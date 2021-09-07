@@ -6,8 +6,8 @@ import { searchTermState } from "../interfaces/searchTermInterface";
 const initialState: searchTermState = {
   term: "",
   genre: "",
-  rating: null,
-  sort:null
+  rating: 0,
+  sort:""
 };
 
 export const searchSlice = createSlice({
