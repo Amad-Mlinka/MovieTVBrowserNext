@@ -19,7 +19,7 @@ const ReviewList = (props: propInterface) => {
 
 
   const responsive:ResponsiveType = responsiveSettings(reviews.length,"reviews")
-  const sliderRef = useRef<any>(<Carousel responsive={responsive}/>)
+  const sliderRef = useRef<any>(<Carousel responsive={responsive} > </Carousel>)
 
   return (
     <>{

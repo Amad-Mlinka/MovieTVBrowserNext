@@ -35,7 +35,7 @@ export const MovieMediaList = ({ media, heading, subHeading, overlay }: propsInt
   const movies=media ? media : []
 
   const responsive: ResponsiveType = responsiveSettings(movies.length)
-  const sliderRef = useRef<any>(<Carousel responsive={responsive} />)
+  const sliderRef = useRef<any>(<Carousel responsive={responsive} > </Carousel>)
 
 
 

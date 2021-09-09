@@ -33,7 +33,7 @@ const ActorList = (props: actorListProps) => {
   const actors = props.actors ? props.actors : []
 
   const responsive: ResponsiveType = responsiveSettings(actors.length)
-  const sliderRef = useRef<any>(<Carousel responsive={responsive} />)
+  const sliderRef = useRef<any>(<Carousel responsive={responsive} > </Carousel>)
 
 
 
