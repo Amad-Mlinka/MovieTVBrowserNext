@@ -19,7 +19,6 @@ import ChildrenElementProps from "../../interfaces/childrenInterface"
 
 
 const Content = ({children}:ChildrenElementProps) => {
-
     const sidebar:boolean = reduxHooks.useAppSelector((state: RootState) =>state.sidebarReducer.open)
     return (
         <main className={`${contentStyles.main}`}>

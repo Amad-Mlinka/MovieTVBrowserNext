@@ -6,7 +6,7 @@ import { searchTermState } from "../interfaces/searchTermInterface";
 const initialState: searchTermState = {
   term: "",
   genre: "",
-  rating: 0,
+  rating: "",
   sort:""
 };
 
@@ -29,7 +29,7 @@ export const searchSlice = createSlice({
       state.genre = initialState.genre;
     },
 
-    changeRating: (state: searchTermState, action: PayloadAction<number>) => {
+    changeRating: (state: searchTermState, action: PayloadAction<string>) => {
       state.rating = action.payload;
     },
     resetRating: (state: searchTermState) => {

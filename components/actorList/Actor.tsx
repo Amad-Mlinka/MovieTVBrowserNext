@@ -1,9 +1,7 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 import useSWR from 'swr'
 import { actorInterface } from '../../interfaces/movieInterface'
-import { ActorP } from '../../interfaces/peopleInterface'
 import actorStyles from "../../styles/ActorList/Actor.module.scss"
 import fetcher from '../fetcher/Fetcher'
 
@@ -21,7 +19,7 @@ const Actor = (props: actorInterface) => {
     <div className={actorStyles.actor}>
       <div className={actorStyles.actorContainer}>
         <div className={actorStyles.actorImageContainer}>
-         <Image src={data.items[0].image} height={200} width={200}/>
+         <Image alt={props.name + " image"} src={data.items[0].image} height={200} width={200}/>
         </div>
 
         <div className={actorStyles.actorInfo}>

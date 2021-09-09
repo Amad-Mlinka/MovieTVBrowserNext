@@ -23,7 +23,6 @@ import { useRouter } from 'next/router'
 const Sidebar = () => {
     const router = useRouter()
     const url = router.pathname.split("/")[1];
-    console.log({ url })
 
     const dispatch = reduxHooks.useAppDispatch()
     const sidebar: boolean = reduxHooks.useAppSelector((state: RootState) => state.sidebarReducer.open)

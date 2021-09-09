@@ -1,7 +1,6 @@
 /*Imports */
 import React, { useContext, useEffect } from 'react'
 import Image from 'next/image';
-import { useRouter } from 'next/router'
 import ActorList from '../../components/actorList/ActorList';
 import { SRLWrapper } from "simple-react-lightbox";
 import ReactPlayer from 'react-player'
@@ -57,7 +56,7 @@ const Movie = (props: propsInterface) => {
                         {/*First Column */}
                         <div className={`${movieDetailsStyles.infoColumn} ${movieDetailsStyles.imageContainer}`}>
                             <div className={movieDetailsStyles.image}>
-                                <Image src={movie.medium_cover_image} width="1000 " height="1500" layout="intrinsic" alt="Movie poster image"></Image>
+                                <Image alt={movie.title + " poster"} src={movie.medium_cover_image} width="1000 " height="1500" layout="intrinsic"></Image>
                             </div>
                         </div>
 

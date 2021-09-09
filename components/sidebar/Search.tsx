@@ -4,14 +4,13 @@ import Link from 'next/link';
 import * as reduxHooks from "../../hooks/reduxHooks"
 import { changeGenre, changeRating, changeSort, changeTerm, resetGenre, resetRating, resetSort, resetTerm } from '../../store/searchSlice';
 import { changeOpen } from '../../store/sidebarSlice';
-import store, { RootState } from '../../store/store';
+import { RootState } from '../../store/store';
 
 /*Material components*/
 
 
 /*Icons*/
 import SearchIcon from '@material-ui/icons/Search';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 /*Import Plugins*/
@@ -21,7 +20,7 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 /*Styles*/
 import sidebarStyles from "../../styles/Navigation/Sidebar.module.scss"
 import { useRouter } from 'next/router';
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { Button, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 
 
@@ -141,7 +140,7 @@ const Search = () => {
                             onChange={changeRatingHandler}
                             value={searchRating}
                         >
-                            <MenuItem value={0}>
+                            <MenuItem value={""}>
                                 <em>None</em>
                             </MenuItem>
                             {
@@ -176,7 +175,8 @@ const Search = () => {
                         </FormControl>
                     </div>
                 }
-                <button onClick={resetSortHandler} >Reset</button>
+                <Button onClick={resetSortHandler} variant="outlined">Reset</Button>
+
             </div>
         </div>
     )

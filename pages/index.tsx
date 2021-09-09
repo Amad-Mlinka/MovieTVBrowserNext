@@ -32,7 +32,7 @@ export default function Home(props: MovieListData) {
         </div>
         <div className={homeStyles.subHeading}>
           The best movie site for finding your next movie to watch on your date night or sleepover.
-          Movie data directly from <Link href="https://yts.mx/"><a><Image src={ytsLogo} height="20" width="60"></Image></a></Link>  movie group and supplementary data from <Link href="https://www.imdb.com/"><a><Image src={imdbLogo} height="30" width="30"></Image></a></Link>
+          Movie data directly from <Link href="https://yts.mx/"><a><Image alt={"yts logo"} src={ytsLogo} height="20" width="60"></Image></a></Link>  movie group and supplementary data from <Link href="https://www.imdb.com/"><a><Image alt={"imdb logo"} src={imdbLogo} height="30" width="30"></Image></a></Link>
         </div>
         <hr className={homeStyles.seperator} />
         <div className={homeStyles.upcomingSection}>

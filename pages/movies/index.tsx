@@ -18,9 +18,10 @@ const index = ({ moviesRated, moviesAdded, moviesDownloaded }: propsInterface) =
             <Header text="Movies" />
 
             <div className={moviesStyle.buffer}></div>
-            <MovieMediaList mediaType="movie" media={moviesRated.data.movies} heading="Top Rated Movies" subHeading="Discover the best movies" overlay={true} />
-            <MovieMediaList mediaType="movie" media={moviesAdded.data.movies} heading="Newly Added Movies" subHeading="Discover the newest movies" overlay={true} />
-            <MovieMediaList mediaType="movie" media={moviesDownloaded.data.movies} heading="Popular downloads" subHeading="Discover the most downloaded movies" overlay={true} />
+            
+            {moviesRated      && <MovieMediaList media={moviesRated.data.movies}      heading="Top Rated Movies"   subHeading="Discover the best movies"            overlay={true} />}
+            {moviesAdded      && <MovieMediaList media={moviesAdded.data.movies}      heading="Newly Added Movies" subHeading="Discover the newest movies"          overlay={true} />}
+            {moviesDownloaded && <MovieMediaList media={moviesDownloaded.data.movies} heading="Popular downloads"  subHeading="Discover the most downloaded movies" overlay={true} />}
         </>
     )
 }

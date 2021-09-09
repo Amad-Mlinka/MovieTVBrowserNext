@@ -13,11 +13,11 @@ import headerStyles from "../../styles/Global/Header.module.scss"
 
 
 
-interface headerProps{
-    text:string
+interface headerProps {
+    text: string
 }
 
-const Header = ({ text }:headerProps) => {
+const Header = ({ text }: headerProps) => {
     return (
         <>
             <header className={headerStyles.header}>

@@ -2,18 +2,14 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import * as reduxHooks from "../../hooks/reduxHooks"
-import { changeTerm, resetTerm } from '../../store/searchSlice';
-import { changeOpen } from '../../store/sidebarSlice';
-import store, { RootState } from '../../store/store';
+import { RootState } from '../../store/store';
 import Search from './Search';
 
 /*Material components*/
 
 
 /*Icons*/
-import SearchIcon from '@material-ui/icons/Search';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 /*Import Plugins*/
 

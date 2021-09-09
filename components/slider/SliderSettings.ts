@@ -1,60 +1,54 @@
-export const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    variableWidth: false,
-    arrows: false,
-    responsive: [
-        {
-            breakpoint: 3560,
-            settings: {
-                slidesToShow: 8,
-                slidesToScroll: 2
-            }
-        },
-        {
-            breakpoint: 1860,
-            settings: {
-                slidesToShow: 6,
-                slidesToScroll: 2
-            }
-        },
-        {
-            breakpoint: 1424,
-            settings: {
-                slidesToShow: 5,
-                slidesToScroll: 2
-            }
-        },
-        {
-            breakpoint: 1200,
-            settings: {
-                slidesToShow: 4,
-                slidesToScroll: 2
-            }
-        },
-        {
-            breakpoint: 920,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 2
-            }
-        },
-        {
-            breakpoint: 700,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-            }
-        }
-    ]
+import { ResponsiveType } from "react-multi-carousel";
+
+export const responsiveSettings = function (itemCounter:number,type?: string) {
+  let responsive:ResponsiveType;
+  if (type == "reviews") {
+    responsive = {
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: itemCounter>4 ? 4 : itemCounter,
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 800 },
+        items: itemCounter>3 ? 3 : itemCounter,
+      },
+      bigMobile: {
+        breakpoint: { max: 800, min: 540 },
+        items: itemCounter>2 ? 2 : itemCounter,
+      },
+      mobile: {
+        breakpoint: { max: 540, min: 0 },
+        items: 1,
+      },
+    };
+  } else {
+    responsive = {
+      superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 1800 },
+        items: itemCounter>7 ? 7 : itemCounter,
+      },
+      largeDesktop: {
+        breakpoint: { max: 1800, min: 1400 },
+        items: itemCounter>5 ? 5 : itemCounter,
+      },
+      desktop: {
+        breakpoint: { max: 1400, min: 1024 },
+        items: itemCounter>4 ? 4 : itemCounter,
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 800 },
+        items: itemCounter>3 ? 3 : itemCounter,
+      },
+      bigMobile: {
+        breakpoint: { max: 800, min: 540 },
+        items: itemCounter>2 ? 2 : itemCounter,
+      },
+      mobile: {
+        breakpoint: { max: 540, min: 0 },
+        items: 1,
+      },
+    };
+  }
+  return responsive;
 };

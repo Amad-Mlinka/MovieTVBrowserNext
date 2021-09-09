@@ -1,6 +1,6 @@
 export interface searchTermState{
     term:string,
     genre:string,
-    rating:number,
+    rating:string,
     sort:string
 }
