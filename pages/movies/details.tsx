@@ -178,11 +178,11 @@ const Details = (props: propsInterface) => {
                     {/*Actors/reviews */}
                     <div className={` ${movieDetailsStyles.otherInfo}`}>
 
-                        {<div className={movieDetailsStyles.actors}>
+                        {actors && <div className={movieDetailsStyles.actors}>
                             <ActorList actors={actors} />
 
                         </div>}
-                        {<div className={movieDetailsStyles.review}>
+                        {reviews && <div className={movieDetailsStyles.review}>
                             <ReviewList reviews={reviews.items} />
 
                         </div>}
