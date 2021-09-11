@@ -63,7 +63,7 @@ export const MovieMediaList = ({ media, heading, subHeading, overlay }: propsInt
 
 
           </div>
-          <Carousel ref={sliderRef} responsive={responsive} swipeable={false} draggable={false} infinite={true} arrows={false}>
+          <Carousel ref={sliderRef} responsive={responsive} swipeable={true} draggable={true} infinite={true} arrows={false}>
             {media &&
               media.map((movie: Movie) => (
                 <Media key={movie.id} movie={movie} overlay={overlay} />
