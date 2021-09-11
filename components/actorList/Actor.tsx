@@ -10,6 +10,7 @@ import fetcher from '../fetcher/Fetcher'
 
 
 const Actor = (props: actorInterface) => {
+  const placeholderUrl = "/placeholder.png"
   const { data, error } = useSWR(`https://imdb-api.com/en/API/Images/k_l8gfe3i4/nm${props.imdb_code}`, fetcher)
   if (error) return (<h1>Error</h1>);
 
@@ -18,17 +19,11 @@ const Actor = (props: actorInterface) => {
   return (
     <div className={actorStyles.actor}>
       <div className={actorStyles.actorContainer}>
-        <div className={actorStyles.actorImageContainer}>
-         <Image alt={props.name + " image"} src={data.items[0].image} height={200} width={200}/>
+        <div className={actorStyles.actorTitle}>
+        <div className={actorStyles.actorName}>{props.name}</div> <span style={{margin: "0px 10px"}}>as</span>  <div className={actorStyles.actorChar}>{props.character_name}</div>
         </div>
-
-        <div className={actorStyles.actorInfo}>
-          <div className={actorStyles.actorTitle}>
-            <span className={actorStyles.actorNameText}> {props.name} as</span>
-          </div>
-          <div className={actorStyles.actorYear}>
-            <span className={actorStyles.actorCharacterText}> {props.character_name}</span>
-          </div>
+        <div className={actorStyles.actorImage}>
+          <Image src={props.url_small_image ? props.url_small_image :placeholderUrl} layout={"fill"} objectFit={"cover"}></Image>
         </div>
       </div>
     </div>

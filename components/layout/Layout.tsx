@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import Nav from '../nav/Nav'
 import Content from '../content/Content'
+import { useRouter } from 'next/router'
 
 /*Material components*/
 
@@ -13,9 +14,12 @@ import Content from '../content/Content'
 
 /*Interfaces */
 import ChildrenElementProps from "../../interfaces/childrenInterface"
-import { useRouter } from 'next/router'
 
-const Layout = ({ children }:ChildrenElementProps) => {
+
+const Layout = ({ children }: ChildrenElementProps) => {
+    const router = useRouter();
+    const url = router.pathname;
+    console.log(url);
     return (
         <>
             <Head>

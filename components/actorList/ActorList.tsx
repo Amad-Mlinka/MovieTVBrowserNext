@@ -33,7 +33,6 @@ const ActorList = (props: actorListProps) => {
   const actors = props.actors ? props.actors : []
 
   const responsive: ResponsiveType = responsiveSettings(actors.length)
-  const sliderRef = useRef<any>(<Carousel responsive={responsive} > </Carousel>)
 
 
 
@@ -50,14 +49,8 @@ const ActorList = (props: actorListProps) => {
                 <span>In this movie</span>
               </div>
             </div>
-
-            <div className={`${actorListStyles.arrowsContainer}`}>
-              <div className={`${actorListStyles.arrow} ${actorListStyles.arrowLeft}`} onClick={() => sliderRef.current.previous()} ><ChevronLeftIcon /></div>
-              <div className={`${actorListStyles.arrow} ${actorListStyles.arrowLeft}`} onClick={() => sliderRef.current.next()} ><ChevronRightIcon /></div>
-            </div>
           </div>
 
-          <Carousel ref={sliderRef} responsive={responsive} swipeable={false} draggable={false} infinite={true} arrows={false}>
             {actors &&
               actors.map((actor: actorInterface) => (
                 <Actor key={actor.imdb_code} {...actor} />
@@ -65,7 +58,6 @@ const ActorList = (props: actorListProps) => {
               )
 
             }
-          </Carousel>
 
 
         </div>

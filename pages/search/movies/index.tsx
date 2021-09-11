@@ -8,6 +8,7 @@ import searchListStyles from "../../../styles/Search.module.scss"
 import Loading from '../../../components/loading/Loading'
 import Media from '../../../components/mediaList/Media'
 import { Movie, MovieListData } from '../../../interfaces/movieListInterface'
+import { NextSeo } from 'next-seo'
 
 
 
@@ -46,6 +47,9 @@ const Search = () => {
 
         return (
             <>
+              <NextSeo
+                title={`Search`}
+            />
                 <Header text="Search" />
                 <div className={searchListStyles.searchList}>
                     <div className={searchListStyles.searchListContainer}>

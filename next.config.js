@@ -1,7 +1,3 @@
-const nextTranslate = require('next-translate')
-
-module.exports = nextTranslate()
-
 module.exports = {
   env: {
     apiKey: '70846ae2c3bdf81734c4dc36fab283cc',
@@ -10,8 +6,4 @@ module.exports = {
     domains: ['image.tmdb.org', "yts.mx", "imdb-api.com"],
   },
   reactStrictMode: true,
-  i18n: {
-    locales: ['en', 'ba'],
-    defaultLocale: 'en',
-  },
 }

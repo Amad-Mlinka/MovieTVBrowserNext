@@ -18,7 +18,7 @@ const ReviewList = (props: propInterface) => {
   const reviews = props.reviews ? props.reviews : []
 
 
-  const responsive:ResponsiveType = responsiveSettings(reviews.length,"reviews")
+  const responsive: ResponsiveType = responsiveSettings(reviews.length, "reviews")
   const sliderRef = useRef<any>(<Carousel responsive={responsive} > </Carousel>)
 
   return (
@@ -34,26 +34,19 @@ const ReviewList = (props: propInterface) => {
                 <span>For this movie</span>
               </div>
             </div>
-
-            <div className={`${reviewListStyles.arrowsContainer}`}>
-              <div className={`${reviewListStyles.arrow} ${reviewListStyles.arrowLeft}`} onClick={() => sliderRef.current.previous()} ><ChevronLeftIcon /></div>
-              <div className={`${reviewListStyles.arrow} ${reviewListStyles.arrowLeft}`} onClick={() => sliderRef.current.next()} ><ChevronRightIcon /></div>
-            </div>
-
-
           </div>
           {reviews ?
-            <Carousel ref={sliderRef} responsive={responsive} swipeable={false} draggable={false} infinite={true} arrows={false}>
-              {
-                reviews.map((review: reviewInterface, i: number) => {
-                  if (review.content != "" && review.rate != "")
-                    return (
-                      <Review key={i} review={review} />
-                    )
-                  else return null
-                })
-              }
-            </Carousel> :
+
+
+            reviews.map((review: reviewInterface, i: number) => {
+              if (review.content != "" && review.rate != "")
+                return (
+                  <Review key={i} review={review} />
+                )
+              else return null
+            })
+
+            :
             <h1 className={reviewListStyles.errorText}>No Review Data</h1>
           }
 

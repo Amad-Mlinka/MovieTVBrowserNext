@@ -4,23 +4,42 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 15%);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 .actorContainer {
-  position: relative;
-  overflow: hidden;
-  width: fit-content;
+  justify-content: flex-end;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row-reverse;
   align-items: center;
+  width: 100%;
 }
 .actorImageContainer {
   border: 5px solid white !important;
 }
+.actorTitle {
+  font-size: 22px;
+  display: flex;
+
+  .actorName {
+    color: $secondary-color;
+  }
+  .actorChar {
+    color: $tertiary-color;
+  }
+}
 
 .actorImage {
-  width: 200px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 30px;
 }
 
 .actorImageContainer {
@@ -30,34 +49,5 @@
   width: fit-content;
 }
 
-.actorInfo {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 700;
-  font-size: 16px;
-  margin-left: 10px;
-  text-align: center;
-
-  span{
-    width: 100%;
-    display: block;
-  }
-  
-}
-
-.actorNameText {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
-  width: 200px;
-}
-
 @include breakpoint(min-tablet) {
-  .actorContainer {
-    position: relative;
-    overflow: hidden;
-  }
 }

@@ -1,27 +1,32 @@
+import { NextSeo } from 'next-seo'
 import React from 'react'
 import Header from '../../components/header/Header'
 import { MovieMediaList } from '../../components/mediaList/MediaList'
 import { MovieListData } from '../../interfaces/movieListInterface'
 import moviesStyle from "../../styles/Movies.module.scss"
 
-interface propsInterface{
-    moviesRated:MovieListData,
-    moviesAdded:MovieListData,
-    moviesDownloaded:MovieListData
-  }
-  
+interface propsInterface {
+    moviesRated: MovieListData,
+    moviesAdded: MovieListData,
+    moviesDownloaded: MovieListData
+}
+
 
 
 const index = ({ moviesRated, moviesAdded, moviesDownloaded }: propsInterface) => {
     return (
         <>
+            <NextSeo
+                title={`Movie lists`}
+                description="Movie lises"
+            />
             <Header text="Movies" />
 
             <div className={moviesStyle.buffer}></div>
-            
-            {moviesRated      && <MovieMediaList media={moviesRated.data.movies}      heading="Top Rated Movies"   subHeading="Discover the best movies"            overlay={true} />}
-            {moviesAdded      && <MovieMediaList media={moviesAdded.data.movies}      heading="Newly Added Movies" subHeading="Discover the newest movies"          overlay={true} />}
-            {moviesDownloaded && <MovieMediaList media={moviesDownloaded.data.movies} heading="Popular downloads"  subHeading="Discover the most downloaded movies" overlay={true} />}
+
+            {moviesRated && <MovieMediaList media={moviesRated.data.movies} heading="Top Rated Movies" subHeading="Discover the best movies" overlay={true} />}
+            {moviesAdded && <MovieMediaList media={moviesAdded.data.movies} heading="Newly Added Movies" subHeading="Discover the newest movies" overlay={true} />}
+            {moviesDownloaded && <MovieMediaList media={moviesDownloaded.data.movies} heading="Popular downloads" subHeading="Discover the most downloaded movies" overlay={true} />}
         </>
     )
 }

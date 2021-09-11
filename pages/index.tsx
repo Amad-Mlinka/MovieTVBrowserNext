@@ -1,11 +1,12 @@
 import Head from 'next/head'
 
 import homeStyles from '../styles/Home.module.scss'
-import { MovieMediaList } from "../components/mediaList/MediaList"
 import Header from '../components/header/Header'
 import Image from 'next/image'
 import ytsLogo from '../public/yts-logo.png'
 import imdbLogo from '../public/iMDBLogo.png'
+import { NextSeo } from 'next-seo';
+
 
 
 import "slick-carousel/slick/slick.css";
@@ -18,12 +19,15 @@ import Media from '../components/mediaList/Media'
 
 
 export default function Home(props: MovieListData) {
-  console.log(props.data.movies)
   const movies = props.data.movies
 
   return (
 
     <>
+      <NextSeo
+      title="Home"
+      description="Welcome to MovieX"
+      />
       <Header text="Home" />
       <div className={homeStyles.heading}>
 
@@ -42,7 +46,7 @@ export default function Home(props: MovieListData) {
           <div className={homeStyles.upcomingMovies}>
             {movies && movies.map((movie: Movie, i: Number) => (
               <div className={homeStyles.mediaContainer} key={movie.id}>
-                <Media  movie={movie} overlay={true}></Media>
+                <Media movie={movie} overlay={true}></Media>
               </div>
 
             ))

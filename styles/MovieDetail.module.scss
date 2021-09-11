@@ -1,18 +1,18 @@
 @import "/styles/Global/general.scss";
+
 .container {
     width: 100%;
     height: 100%;
 }
-.containerBackground {
-    width: 100%;
-    height: 100%;
-    filter: blur(30px);
-    z-index: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
+.heading {
+    font-size: 40px;
+    font-weight: bolder;
+    text-align: center;
 }
-
+.subheading {
+    font-weight: bold;
+    font-size: 30px;
+}
 .movieInfo {
     .infoColumn {
         width: 100%;
@@ -25,15 +25,13 @@
     padding-top: 50px;
     .imageDetailsContainer {
         display: flex;
-
     }
     .imageContainer {
         display: none;
         margin: 20px;
-         .image {
-            
+        .image {
             border: 5px solid white;
-            line-height:0;
+            line-height: 0;
         }
     }
     .details {
@@ -42,7 +40,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        .movieMediaTrailerContainer{
+        .movieMediaTrailerContainer {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -53,25 +51,26 @@
         color: white;
         font-weight: bold;
         font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
-        text-align: center;
     }
     .title {
-        font-size: 45px;
+        font-size: 30px;
     }
     .year {
-        font-size: 20px;
+        font-size: 16px;
     }
 
     .rating {
         display: flex;
         flex-direction: column;
+        font-size: 16px;
     }
     .genresList {
         list-style: none;
         padding: 0;
         display: flex;
         flex-direction: row;
-        font-size: 20px;
+        font-size: 16px;
+        flex-wrap: wrap;
 
         .genreListItem {
             margin: 0;
@@ -84,17 +83,27 @@
             }
         }
     }
+    .movieSimilarItem {
+        width: 50%;
+    }
     .movieMedia {
         width: 100%;
 
         .imagesTitle {
-            font-size: 30px;
+            font-size: 25px;
         }
         .movieMediaContainer {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            .movieSimilar {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                margin: auto;
+            }
         }
     }
     .movieMediaImagesContainer {
@@ -117,11 +126,10 @@
             align-items: center;
             margin: 5px 6px;
             cursor: pointer;
-            
+
             .movieMediaImage {
                 width: 100px;
                 height: auto;
-                
             }
         }
     }
@@ -134,14 +142,60 @@
         }
     }
 }
+.synopsis {
+    margin: 30px 0px;
+    padding: 0 35px;
+    width: 100%;
+    .detailsText {
+        text-align: left;
+    }
+    .synopsisTitle {
+        font-size: 22px;
+        color: white;
+    }
+    .synopsisText {
+        color: $tertiary-color;
+    }
+}
+.images {
+    .imagesList {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        margin: auto;
+        flex-wrap: wrap;
+        .imagesListItemContainer {
+            width: 100%;
+        }
+        .imagesListItem {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+            filter: contrast(100%);
+            &:hover {
+                transition: all 0.5s ease;
+                filter: contrast(80%);
+            }
+        }
+    }
+}
+.otherInfo {
+    .review {
+        width: 100%;
+    }
+    .actors {
+        width: 100%;
+    }
+}
 
 @include breakpoint(min-laptop) {
     .basicInfo {
         flex-direction: row;
-        .imageDetailsContainer{
+        .imageDetailsContainer {
             width: 100%;
         }
-        .details{
+        .details {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -151,12 +205,12 @@
                 font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
                 text-align: left !important;
             }
-            .movieMediaTrailerContainer{
+            .movieMediaTrailerContainer {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-            }            
+            }
         }
 
         .movieMediaImages {
@@ -165,12 +219,44 @@
                     position: relative;
                     width: 100%;
                     height: auto;
-                    transition: width .3s ease-in-out;
-                    &:hover{
+                    transition: width 0.3s ease-in-out;
+                    &:hover {
                         width: 120%;
                     }
                 }
             }
+        }
+    }
+    .synopsis {
+        padding: 0 35px;
+        width: 66%;
+        .detailsText {
+            text-align: left;
+        }
+        .synopsisTitle {
+            font-size: 22px;
+            color: white;
+        }
+        .synopsisText {
+            color: $tertiary-color;
+        }
+    }
+    .images {
+        .imagesList {
+            .imagesListItemContainer {
+                width: 33%;
+            }
+        }
+    }
+    .otherInfo {
+        display: flex;
+        margin: 20px 0px 55px 15px;
+        justify-content: space-around;
+        .review {
+            width: 45%;
+        }
+        .actors {
+            width: 45%;
         }
     }
 }
@@ -192,69 +278,43 @@
                 width: 60%;
             }
         }
-    }
+        .detailsText {
+            color: white;
+            font-weight: bold;
+            font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
+            margin: 10px;
+        }
+        .title {
+            font-size: 45px;
+        }
+        .year {
+            font-size: 20px;
+        }
 
-    .detailsText {
-        color: white;
-        font-weight: bold;
-        font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
-        margin: 10px;
-    }
-    .title {
-        font-size: 45px;
-    }
-    .year {
-        font-size: 20px;
-    }
+        .rating {
+            display: flex;
+            flex-direction: column;
+        }
+        .genresList {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            font-size: 20px;
 
-    .rating {
-        display: flex;
-        flex-direction: column;
-    }
-    .genresList {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-direction: row;
-        font-size: 20px;
+            .genreListItem {
+                margin: 0;
 
-        .genreListItem {
-            margin: 0;
-
-            &:not(:first-child) {
-                &::before {
-                    content: "/";
-                    margin: 0px 5px;
+                &:not(:first-child) {
+                    &::before {
+                        content: "/";
+                        margin: 0px 5px;
+                    }
                 }
             }
         }
-    }
-    .movieMedia {
-        width: 33% !important;
-        .imagesTitle {
-            font-size: 30px;
-        }
-        .movieMediaContainer {
-            width: 100%;
-        }
-    }
-    .movieMediaImages {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-
-        .movieMediaImageContainer {
-            width: 33%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 5px 0px;
-            .movieMediaImage {
-                width: 100%;
-                height: auto;
-                
-            }
+        .movieMedia {
+            width: 33% !important;
         }
     }
 }

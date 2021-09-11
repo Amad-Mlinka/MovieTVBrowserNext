@@ -1,27 +1,49 @@
 @import "../Global/general.scss";
 
-.media {
-   width: 100%;
-  display: flex;
-  justify-content: center;
-    
-  }
-  
-  .mediaContainer {
-    position: relative;
-    overflow: hidden; 
+.media{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.mediaContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mediaImageContainer{
     width: fit-content;
-  }
-  .mediaImageContainer{
-    border: 5px solid white !important;
+    border: 5px solid white;
+    line-height:0;
+    margin: 10px 0;
+    width: 50%;
     
+}
+
+.mediaImage{
+    position:relative;
+    width: 100px;
+    height: 150px;
+}
+.mediaInfo{
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
   }
 
-  .mediaImage{
+  .mediaTitleText{
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
     width: 200px;
   }
   
-  .mediaOverlay {
+
+
+.mediaOverlay {
     position: absolute;
     opacity: 0;
     top: 0px;
@@ -51,33 +73,9 @@
     justify-content: center;
     align-items: center;
   }
-  .mediaImageContainer{
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .mediaInfo{
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-weight: 700;
-    font-size: 16px;
-    margin-left: 10px;  
-  }
 
-  .mediaTitleText{
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-    width: 200px;
-  }
-  
-  
-  @keyframes fadeInUp {
+
+   @keyframes fadeInUp {
     from {
         transform: translate3d(0, 40px, 0);
         opacity: 0;
