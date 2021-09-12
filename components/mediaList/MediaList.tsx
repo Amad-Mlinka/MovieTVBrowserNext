@@ -20,6 +20,7 @@ import 'react-multi-carousel/lib/styles.css';
 /*Interfaces */
 import { Movie } from '../../interfaces/movieListInterface';
 import { responsiveSettings } from '../slider/SliderSettings';
+import Link from 'next/link';
 
 
 interface propsInterface {
@@ -32,7 +33,7 @@ interface propsInterface {
 
 export const MovieMediaList = ({ media, heading, subHeading, overlay }: propsInterface) => {
 
-  const movies=media ? media : []
+  const movies = media ? media : []
 
   const responsive: ResponsiveType = responsiveSettings(movies.length)
   const sliderRef = useRef<any>(<Carousel responsive={responsive} > </Carousel>)
@@ -47,18 +48,17 @@ export const MovieMediaList = ({ media, heading, subHeading, overlay }: propsInt
           <div className={mediaListStyles.header}>
             <div className={mediaListStyles.headerContainer}>
               <div className={mediaListStyles.heading}>
-                <span>{heading}</span>
+              <Link href={`/search/movies`}><span>{heading}</span></Link>
               </div>
               <div className={mediaListStyles.subHeading}>
                 <span>{subHeading}</span>
               </div>
             </div>
 
+
             <div className={`${mediaListStyles.arrowsContainer}`}>
-              <div className={`${mediaListStyles.arrowsContainer}`}>
-                <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => sliderRef.current.previous()}><ChevronLeftIcon /></div>
-                <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowRight}`} onClick={() => sliderRef.current.next()}><ChevronRightIcon /></div>
-              </div>
+              <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowLeft}`} onClick={() => sliderRef.current.previous()}><ChevronLeftIcon /></div>
+              <div className={`${mediaListStyles.arrow} ${mediaListStyles.arrowRight}`} onClick={() => sliderRef.current.next()}><ChevronRightIcon /></div>
             </div>
 
 

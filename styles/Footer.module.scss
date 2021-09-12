@@ -1,0 +1,12 @@
+@import "/styles/Global/general.scss";
+
+.footer{
+    position: sticky;
+    bottom: 1000px;
+    left: 0;
+    padding-left: 50px;
+
+    height: 50px;
+    width: 100%;
+    background-color:$base-color;
+}

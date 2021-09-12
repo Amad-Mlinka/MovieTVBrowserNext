@@ -8,18 +8,15 @@ import { reviewInterface } from '../../interfaces/reviewInterface';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import { responsiveSettings } from '../slider/SliderSettings';
 import 'react-multi-carousel/lib/styles.css';
+import { localeInterface } from '../../interfaces/localeInterface';
 
 interface propInterface {
   reviews: reviewInterface[] | null | undefined;
+  locale:localeInterface
 }
 
 
-const ReviewList = (props: propInterface) => {
-  const reviews = props.reviews ? props.reviews : []
-
-
-  const responsive: ResponsiveType = responsiveSettings(reviews.length, "reviews")
-  const sliderRef = useRef<any>(<Carousel responsive={responsive} > </Carousel>)
+const ReviewList = ({reviews,locale}: propInterface) => {
 
   return (
     <>{
@@ -28,10 +25,10 @@ const ReviewList = (props: propInterface) => {
           <div className={reviewListStyles.header}>
             <div className={reviewListStyles.headerContainer}>
               <div className={reviewListStyles.heading}>
-                <span>Reviews</span>
+                <span>{locale.reviewsTitle}</span>
               </div>
               <div className={reviewListStyles.subHeading}>
-                <span>For this movie</span>
+                <span>{locale.reviewSub}</span>
               </div>
             </div>
           </div>

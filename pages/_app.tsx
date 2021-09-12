@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import store from '../store/store'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { AppProps } from 'next/app';
+import { useRouter } from 'next/router'
 
 
 

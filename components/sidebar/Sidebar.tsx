@@ -16,11 +16,15 @@ import LanguageIcon from '@material-ui/icons/Language';
 /*Styles*/
 import sidebarStyles from "../../styles/Navigation/Sidebar.module.scss"
 import { useRouter } from 'next/router'
+import { localeInterface } from "../../interfaces/localeInterface";
 
 
+interface propsInterface {
+    locale:localeInterface;
+}
 
 
-const Sidebar = () => {
+const Sidebar = ({locale}:propsInterface) => {
     const router = useRouter()
     const url = router.pathname.split("/")[1];
 
@@ -29,12 +33,12 @@ const Sidebar = () => {
 
     const languageDropdown = [
         {
-            title: "english",
-            link: "bla"
+            title: locale.eng,
+            link: "en"
         },
         {
-            title: "bosnian",
-            link: "blabla"
+            title: locale.bos,
+            link: "bs"
         }
     ]
     return (
@@ -43,22 +47,18 @@ const Sidebar = () => {
             <div className={sidebarStyles.sidebarMenu}>
                 <div className={`${sidebarStyles.sidebarList}`}>
                     <div className={`${sidebarStyles.sidebarListItem} ${url == "search" && sidebarStyles.sidebarListItemActive}`}>
-                        <SidebarLink type="search" />
+                        <SidebarLink type="search"  />
                     </div>
                     <div className={`${sidebarStyles.sidebarListItem} ${url == "" && sidebarStyles.sidebarListItemActive}`}>
-                        <SidebarLink type="singleLink" text="Home" icon={<HomeIcon />} url="/" />
+                        <SidebarLink type="singleLink" text={locale.home} icon={<HomeIcon />} url="/"  />
                     </div>
 
                     <div className={`${sidebarStyles.sidebarListItem} ${url == "movies" && sidebarStyles.sidebarListItemActive}`}>
-                        <SidebarLink type="singleLink" text="Movies" icon={<MovieIcon />} url="/movies" />
-                    </div>
-
-                    <div className={`${sidebarStyles.sidebarListItem} ${url == "tv" && sidebarStyles.sidebarListItemActive}`}>
-                        <SidebarLink type="singleLink" text="TV Shows" icon={<TvIcon />} url="/tv" />
+                        <SidebarLink type="singleLink" text={locale.movies} icon={<MovieIcon />} url="/movies"  />
                     </div>
 
                     <div className={`${sidebarStyles.sidebarListItem}`}>
-                        <SidebarLink type="dropdown" text="Languages" icon={<LanguageIcon />} dropdownLinks={languageDropdown} />
+                        <SidebarLink type="dropdown" text={locale.languages} icon={<LanguageIcon />} dropdownLinks={languageDropdown}  />
                     </div>
 
                 </div>

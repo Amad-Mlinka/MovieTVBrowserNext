@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Nav from '../nav/Nav'
 import Content from '../content/Content'
 import { useRouter } from 'next/router'
+import Footer from '../footer/Footer'
 
 /*Material components*/
 
@@ -14,12 +15,11 @@ import { useRouter } from 'next/router'
 
 /*Interfaces */
 import ChildrenElementProps from "../../interfaces/childrenInterface"
+import React from 'react'
+
 
 
 const Layout = ({ children }: ChildrenElementProps) => {
-    const router = useRouter();
-    const url = router.pathname;
-    console.log(url);
     return (
         <>
             <Head>
@@ -29,6 +29,7 @@ const Layout = ({ children }: ChildrenElementProps) => {
             <Content >
                 {children}
             </Content>
+            <Footer/>
         </>
 
     )

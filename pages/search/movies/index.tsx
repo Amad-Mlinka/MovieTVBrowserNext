@@ -20,10 +20,6 @@ const Search = () => {
 
     const [page, setPage] = useState(1);
 
-    useEffect(() => {
-       console.log(page)
-    }, [page])
-
     const searchTerm: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.term)
     const searchGenre: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.genre)    
     const searchRating: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.rating)

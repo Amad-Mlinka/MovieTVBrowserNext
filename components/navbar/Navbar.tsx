@@ -15,12 +15,14 @@ import Avatar from '@material-ui/core/Avatar';
 /*Styles*/
 import navStyles from "../../styles/Navigation/Navbar.module.scss"
 import Link from 'next/link';
+import { localeInterface } from "../../interfaces/localeInterface";
+
+interface propsInterface {
+    locale:localeInterface;
+}
 
 
-
-
-const Navbar = () => {
-
+const Navbar = ({locale}:propsInterface) => {
     const dispatch = reduxHooks.useAppDispatch()
     const sidebar: boolean = reduxHooks.useAppSelector((state: RootState) => state.sidebarReducer.open)
 
@@ -50,25 +52,6 @@ const Navbar = () => {
                 </div>
 
 
-            </div>
-            <div className={navStyles.right}>
-                <div className={navStyles.profile}>
-                    <div className={`${navStyles.loggedIn} ${navStyles.dNone} `}>
-
-                        <Avatar className={navStyles.avatar} alt="Amad Mlinaric"> AM </Avatar>
-                    </div>
-                    <div className={`${navStyles.notLoggedIn} `}>
-                        <div className={navStyles.loginRegister}>
-                            <div className={navStyles.login}>
-                                <span>Login</span>
-                            </div>
-                            <span>/</span>
-                            <div className={navStyles.register}>
-                                <span>Register</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </header>

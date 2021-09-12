@@ -11,6 +11,8 @@ import { Button, Link, Rating } from '@material-ui/core'
 /*Styles*/
 import mediaStyles from "../../styles/MediaList/Media.module.scss"
 import { Movie } from "../../interfaces/movieListInterface"
+import { useRouter } from "next/router"
+import { localeInterface } from "../../interfaces/localeInterface"
 
 /*Interfaces */
 interface propInterface {
@@ -24,10 +26,13 @@ interface propInterface {
 const Media = (props: propInterface) => {
   const movie = props.movie
   const placeholderUrl = "/placeholder.png"
+  const router = useRouter();
+  const { locale } = router;
+  const t: any = locale;
   return (
     <>
       <div className={mediaStyles.media}>
-        <Link href={`/movies/details?id=${movie.id}`}>
+        <Link href={`${t}/movies/details?id=${movie.id}`}>
           <div className={mediaStyles.mediaContainer}>
             <div className={mediaStyles.mediaImageContainer}>
               {<Image alt={movie.title + " image"} layout={"intrinsic"} className={mediaStyles.mediaImage} src={`${movie.medium_cover_image ? movie.medium_cover_image : placeholderUrl}`} width="200" height="300" />}

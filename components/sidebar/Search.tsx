@@ -21,10 +21,13 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import sidebarStyles from "../../styles/Navigation/Sidebar.module.scss"
 import { useRouter } from 'next/router';
 import { Button, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { localeInterface } from '../../interfaces/localeInterface';
 
+interface propsInterface{
+    locale:localeInterface
+}
 
-
-const Search = () => {
+const Search = ({locale}:propsInterface) => {
     const router = useRouter()
     const url = router.pathname.split("/")[1];
     const maxRating = 10;
@@ -117,7 +120,7 @@ const Search = () => {
                 <div className={sidebarStyles.searchFilters}>
 
                     <FormControl variant="filled" sx={{ m: 1, minWidth: 90,color:"white" }}>
-                        <InputLabel id="genre">Genre</InputLabel>
+                        <InputLabel id="genre">{locale.genre}</InputLabel>
                         <Select
                             labelId="genre"
                             id="demo-simple-select-filled"
@@ -125,15 +128,15 @@ const Search = () => {
                             onChange={changeGenreHandler}
                         >
                             <MenuItem value="">
-                                <em>None</em>
+                                <em>{locale.none}</em>
                             </MenuItem>
                             {genres.map((genre: string, i: number) => (
                                 <MenuItem key={i} value={genre}>{genre}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>
-                    <FormControl variant="filled" sx={{ m: 1, minWidth: 90 }}>
-                        <InputLabel id="demo-simple-select-filled-label">Rating</InputLabel>
+                    <FormControl variant="filled" sx={{ m: 1, minWidth: 100 }}>
+                        <InputLabel id="demo-simple-select-filled-label">{locale.rating}</InputLabel>
                         <Select
                             labelId="demo-simple-select-filled-label"
                             id="demo-simple-select-filled"
@@ -141,7 +144,7 @@ const Search = () => {
                             value={searchRating}
                         >
                             <MenuItem value={""}>
-                                <em>None</em>
+                                <em>{locale.none}</em>
                             </MenuItem>
                             {
                                 [...Array(maxRating)].map((e, i) => (
@@ -155,8 +158,8 @@ const Search = () => {
                 </div>
                 {
                     <div className={sidebarStyles.searchAscending}>
-                        <FormControl variant="filled" sx={{ m: 1, minWidth: 200 }}>
-                            <InputLabel id="demo-simple-select-filled-label">Sort By</InputLabel>
+                        <FormControl variant="filled" sx={{ m: 1, minWidth: 210 }}>
+                            <InputLabel id="demo-simple-select-filled-label">{locale.sortBy}</InputLabel>
                             <Select
                                 labelId="demo-simple-select-filled-label"
                                 id="demo-simple-select-filled"
@@ -164,7 +167,7 @@ const Search = () => {
                                 onChange={changeSortHandler}
                             >
                                 <MenuItem value="">
-                                    <em>None</em>
+                                    <em>{locale.none}</em>
                                 </MenuItem>
                                 <MenuItem value={"title"}>Title</MenuItem>
                                 <MenuItem value={"year"}>Year</MenuItem>

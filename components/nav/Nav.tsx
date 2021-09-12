@@ -2,6 +2,9 @@
 import Sidebar from '../sidebar/Sidebar'
 import Navbar from '../navbar/Navbar';
 import { useRouter } from 'next/router'
+import { localeInterface } from '../../interfaces/localeInterface';
+import en from '../../locales/en';
+import bs from '../../locales/bs';
 
 
 /*Material components*/
@@ -16,10 +19,13 @@ import { useRouter } from 'next/router'
 
 
 const Nav = () => {
+    const router = useRouter();
+    const { locale } = router;
+    const t: localeInterface = locale === "en" ? en : bs
     return (
         <>
-            <Navbar  />
-            <Sidebar />
+            <Navbar locale={t}  />
+            <Sidebar  locale={t} />
         </>
     )
 }

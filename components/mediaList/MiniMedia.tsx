@@ -3,7 +3,6 @@ import React from 'react'
 import { Movie } from "../../interfaces/movieListInterface"
 import miniMediaStyles from "../../styles/MediaList/MiniMedia.module.scss"
 import Image from "next/image"
-import { Button, Rating } from '@material-ui/core'
 
 interface propInterface {
     movie: Movie,

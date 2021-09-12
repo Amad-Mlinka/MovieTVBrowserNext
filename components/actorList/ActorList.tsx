@@ -18,22 +18,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { actorInterface } from '../../interfaces/movieInterface';
 import 'react-multi-carousel/lib/styles.css';
+import { localeInterface } from '../../interfaces/localeInterface';
 
 
 
 /*Interfaces */
 
 interface actorListProps {
-  actors: actorInterface[] | null | undefined
+  actors: actorInterface[] | null | undefined,
+  locale:localeInterface
 }
 
 
-const ActorList = (props: actorListProps) => {
-
-  const actors = props.actors ? props.actors : []
-
-  const responsive: ResponsiveType = responsiveSettings(actors.length)
-
+const ActorList = ({actors,locale}: actorListProps) => {
 
 
   return (
@@ -43,10 +40,10 @@ const ActorList = (props: actorListProps) => {
           <div className={actorListStyles.header}>
             <div className={actorListStyles.headerContainer}>
               <div className={actorListStyles.heading}>
-                <span>Actors</span>
+                <span>{locale.actorsTitle}</span>
               </div>
               <div className={actorListStyles.subHeading}>
-                <span>In this movie</span>
+                <span>{locale.actorsSub}</span>
               </div>
             </div>
           </div>

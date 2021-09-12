@@ -27,6 +27,10 @@ import { NextSeo } from 'next-seo';
 import { Movie, MovieListData } from '../../interfaces/movieListInterface';
 import Media from '../../components/mediaList/Media';
 import MiniMedia from '../../components/mediaList/MiniMedia';
+import { useRouter } from 'next/router';
+import { localeInterface } from '../../interfaces/localeInterface';
+import en from '../../locales/en';
+import bs from '../../locales/bs';
 
 
 
@@ -40,6 +44,9 @@ interface propsInterface {
 
 
 const Details = (props: propsInterface) => {
+    const router = useRouter();
+    const { locale } = router;
+    const t: localeInterface = locale === "en" ? en : bs
 
 
     const movie = props.movieData.data.movie
@@ -50,13 +57,6 @@ const Details = (props: propsInterface) => {
 
 
     const trailer = movie.yt_trailer_code
-
-    console.log(similar)
-    if (reviews) console.log(reviews)
-    console.log(actors)
-
-
-
 
     return (
         <>
@@ -112,7 +112,7 @@ const Details = (props: propsInterface) => {
                                 <div className={`${movieDetailsStyles.movieMediaTrailerContainer}`}>
 
                                     <h1 className={`${movieDetailsStyles.subheading} ${movieDetailsStyles.detailsText} `}>
-                                        Trailer
+                                    {t.trailer}
                                     </h1>
                                     {trailer.length != 0 ?
 
@@ -129,7 +129,7 @@ const Details = (props: propsInterface) => {
                             {/*Similar movies */}
                             <div className={`${movieDetailsStyles.movieMediaContainer}`}>
                                 <div className={`${movieDetailsStyles.movieMediaHeading}`}>
-                                    <h1 className={`${movieDetailsStyles.subheading} ${movieDetailsStyles.detailsText} `}>Similar movies</h1>
+                                    <h1 className={`${movieDetailsStyles.subheading} ${movieDetailsStyles.detailsText} `}>{t.similarMovies}</h1>
                                 </div>
                                 <div className={`${movieDetailsStyles.movieSimilar}`}>
                                     {similar && similar.length != 0 &&
@@ -146,7 +146,7 @@ const Details = (props: propsInterface) => {
                     {/*Second row */}
                     {/*Synopsis */}
                     <div className={movieDetailsStyles.synopsis}>
-                        <h1 className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.synopsisTitle} ${movieDetailsStyles.detailsText}`} >Synopsis</h1>
+                        <h1 className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.synopsisTitle} ${movieDetailsStyles.detailsText}`} >{t.synopsis}</h1>
                         <span className={`${movieDetailsStyles.detailsText} ${movieDetailsStyles.synopsisText} ${movieDetailsStyles.detailsText}`} >{movie.description_full}</span>
                     </div>
                     <div className={movieDetailsStyles.images}>
@@ -179,11 +179,11 @@ const Details = (props: propsInterface) => {
                     <div className={` ${movieDetailsStyles.otherInfo}`}>
 
                         {actors && <div className={movieDetailsStyles.actors}>
-                            <ActorList actors={actors} />
+                            <ActorList actors={actors} locale={t} />
 
                         </div>}
                         {reviews && <div className={movieDetailsStyles.review}>
-                            <ReviewList reviews={reviews.items} />
+                            <ReviewList reviews={reviews.items} locale={t} />
 
                         </div>}
                     </div>
@@ -213,19 +213,6 @@ export const getServerSideProps = async (context: any) => {
 
     const movieSuggestionsRes = await fetch(`https://yts.mx/api/v2/movie_suggestions.json?movie_id=${id}`)
     const movieSuggestions = await movieSuggestionsRes.json();
-
-
-
-    /*const movieImagesRes = await fetch(`https://imdb-api.com/en/API/Images/k_l8gfe3i4/${imdbId}`)
-    const movieImages = await movieImagesRes.json();
-
-    const movieReviewsRes = await fetch(`https://imdb-api.com/en/API/Reviews/k_l8gfe3i4/${imdbId}`)
-    const movieReviews = await movieReviewsRes.json();*/
-
-
-
-    console.log(movieData.data.movie.imdb_code)
-
 
     return {
         props:
