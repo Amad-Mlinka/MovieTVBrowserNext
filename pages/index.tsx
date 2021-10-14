@@ -74,12 +74,6 @@ export const getStaticProps = async () => {
   const popularMovieRes = await fetch(`https://yts.mx/api/v2/list_movies.json?&sort_by=download_count&limit=4`)
   const popularMovieData = await popularMovieRes.json();
 
-
-
-
-
-
-
   return {
     props: popularMovieData,
 
