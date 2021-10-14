@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import * as reduxHooks from "../../hooks/reduxHooks"
-import { changeGenre, changeRating, changeSort, changeTerm, resetGenre, resetRating, resetSort, resetTerm } from '../../store/searchSlice';
+import { changeGenre, changeRating, changeSort, changeTerm, resetGenre, resetRating, resetSort, resetTerm, changeOrder } from '../../store/searchSlice';
 import { changeOpen } from '../../store/sidebarSlice';
 import { RootState } from '../../store/store';
 
@@ -12,6 +12,7 @@ import { RootState } from '../../store/store';
 /*Icons*/
 import SearchIcon from '@material-ui/icons/Search';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import Switch from '@mui/material/Switch';
 
 /*Import Plugins*/
 
@@ -23,11 +24,11 @@ import { useRouter } from 'next/router';
 import { Button, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { localeInterface } from '../../interfaces/localeInterface';
 
-interface propsInterface{
-    locale:localeInterface
+interface propsInterface {
+    locale: localeInterface
 }
 
-const Search = ({locale}:propsInterface) => {
+const Search = ({ locale }: propsInterface) => {
     const router = useRouter()
     const url = router.pathname.split("/")[1];
     const maxRating = 10;
@@ -64,6 +65,8 @@ const Search = ({locale}:propsInterface) => {
     const searchGenre: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.genre)
     const searchRating: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.rating)
     const searchSort: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.sort)
+    const searchOrder: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.order)
+
 
 
     const sidebar: boolean = reduxHooks.useAppSelector((state: RootState) => state.sidebarReducer.open)
@@ -96,6 +99,11 @@ const Search = ({locale}:propsInterface) => {
         dispatch(resetSort())
     }
 
+    const changeOrderHandler = (event: any) => {
+        dispatch(changeOrder())
+        console.log(searchOrder)
+    }
+
 
 
     const sidebarToggle = () => {
@@ -119,7 +127,7 @@ const Search = ({locale}:propsInterface) => {
             <div className={`${sidebarStyles.searchModifier}`}>
                 <div className={sidebarStyles.searchFilters}>
 
-                    <FormControl variant="filled" sx={{ m: 1, minWidth: 90,color:"white" }}>
+                    <FormControl variant="filled" sx={{ m: 1, minWidth: 90, color: "white" }}>
                         <InputLabel id="genre">{locale.genre}</InputLabel>
                         <Select
                             labelId="genre"
@@ -178,7 +186,20 @@ const Search = ({locale}:propsInterface) => {
                         </FormControl>
                     </div>
                 }
-                <Button onClick={resetSortHandler} variant="outlined">Reset</Button>
+                <div className={sidebarStyles.searchOrder}>
+                    <Button onClick={resetSortHandler} variant="outlined">Reset</Button>
+                    <div className={sidebarStyles.order}>
+                        <span>Desc</span>
+                        <Switch
+                            checked={searchOrder == "asc"}
+                            onChange={changeOrderHandler}
+                            inputProps={{ 'aria-label': 'controlled' }}
+                        />
+                        <span>Asc</span>
+                    </div>
+
+                </div>
+
 
             </div>
         </div>

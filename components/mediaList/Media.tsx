@@ -29,13 +29,14 @@ const Media = (props: propInterface) => {
   const router = useRouter();
   const { locale } = router;
   const t: any = locale;
+  const image= movie.medium_cover_image || placeholderUrl
   return (
     <>
       <div className={mediaStyles.media}>
         <Link href={`${t}/movies/details?id=${movie.id}`}>
           <div className={mediaStyles.mediaContainer}>
             <div className={mediaStyles.mediaImageContainer}>
-              {<Image alt={movie.title + " image"} layout={"intrinsic"} className={mediaStyles.mediaImage} src={`${movie.medium_cover_image ? movie.medium_cover_image : placeholderUrl}`} width="200" height="300" />}
+              {<Image alt={movie.title + " image"} layout={"intrinsic"} className={mediaStyles.mediaImage} src={image} width="200" height="300" />}
             </div>
             {props.overlay &&
               <div className={mediaStyles.mediaOverlay}>

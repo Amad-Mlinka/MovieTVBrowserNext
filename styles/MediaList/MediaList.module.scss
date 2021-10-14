@@ -3,6 +3,9 @@
 .mediaList {
   margin: 20px 0px 55px 15px;
   width: 100%;
+  &:last-child{
+    padding-bottom: 50px;
+  }
 }
 .media {
   margin: auto;

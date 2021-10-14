@@ -24,11 +24,12 @@ const Search = () => {
     const searchGenre: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.genre)    
     const searchRating: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.rating)
     const searchSort: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.sort)
+    const searchOrder: string = reduxHooks.useAppSelector((state: RootState) => state.searchReducer.order)
     const { data: searchData, error: searchError } = useSWR(() =>
 
         searchTerm == "" || searchTerm.length < 2 ?
             `https://yts.mx/api/v2/list_movies.json?page=${page}&${searchGenre!= "" ? "genre="+searchGenre : ""}&${searchRating ? "minimum_rating="+searchRating : ""}&${searchSort ? "sort_by="+searchSort:""} `:
-            `https://yts.mx/api/v2/list_movies.json?query_term=${searchTerm}&page=${page}&${searchGenre!= "" ? "genre="+searchGenre : ""}&${searchRating ? "minimum_rating="+searchRating : ""}&${searchSort ? "sort_by="+searchSort:""} `
+            `https://yts.mx/api/v2/list_movies.json?query_term=${searchTerm}&page=${page}&${searchGenre!= "" ? "genre="+searchGenre : ""}&${searchRating ? "minimum_rating="+searchRating : ""}&${searchSort ? "sort_by="+searchSort:""}&order_by=${searchOrder} `
 
 
         , fetcher)

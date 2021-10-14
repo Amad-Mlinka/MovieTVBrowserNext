@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "./store";
 import { searchTermState } from "../interfaces/searchTermInterface";
 
 // Define the initial state using that type
@@ -7,7 +6,8 @@ const initialState: searchTermState = {
   term: "",
   genre: "",
   rating: "",
-  sort:""
+  sort:"",
+  order:"asc"
 };
 
 export const searchSlice = createSlice({
@@ -42,6 +42,9 @@ export const searchSlice = createSlice({
     resetSort: (state: searchTermState) => {
       state.sort = initialState.sort;
     },
+    changeOrder: (state: searchTermState) => {
+      state.order = state.order=="asc" ? "desc" : "asc";
+    },
 
     
   },
@@ -51,7 +54,7 @@ export const {
   changeTerm,resetTerm,
   changeGenre,resetGenre,
   changeRating,resetRating,
-  changeSort,resetSort,
+  changeSort,resetSort,changeOrder
 } = searchSlice.actions;
 
 

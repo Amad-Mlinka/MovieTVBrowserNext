@@ -67,7 +67,7 @@ const SidebarLink = ({ type, url, text, icon, dropdownLinks }: SidebarLinkProps)
                     :
                     type === types[1] ?
                         <Link href={url ? url : "/"}>
-                            <div className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} style={{ margin: '10px auto' }}>
+                            <div className={`${sidebarStyles.sidebarLink} ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`}>
                                 <div className={`${sidebarStyles.sidebarLinkMain} ${sidebar ? sidebarStyles.sidebarLinkMainOpen : ""}`}>
                                     {icon}
                                     <span className={`${sidebarStyles.sidebarText}  ${sidebar ? sidebarStyles.sidebarTextActive : ""}`}>{text}</span>
@@ -77,7 +77,7 @@ const SidebarLink = ({ type, url, text, icon, dropdownLinks }: SidebarLinkProps)
                         </Link>
 
                         :
-                        <div className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} style={{ margin: '10px auto' }} onClick={() => {
+                        <div className={`${sidebarStyles.sidebarLink}  ${sidebar ? sidebarStyles.sidebarLinkOpen : ""}`} onClick={() => {
                             if (sidebar) setDropdownOpen(!dropdownOpen)
                         }
                         }>
@@ -95,7 +95,7 @@ const SidebarLink = ({ type, url, text, icon, dropdownLinks }: SidebarLinkProps)
                                             <li onClick={() => {
                                                 const locale = link.link
                                                 router.push(router.pathname, router.asPath, { locale });
-                                            }} value={link.link} className={sidebarStyles.sidebarDropdownLink} key={link.title}>{link.title}</li>
+                                            }} value={link.link} className={`${sidebarStyles.sidebarDropdownLink} ${link.link== locale ? sidebarStyles.localeActive : ""} `} key={link.title}>{link.title}</li>
                                         ))
 
                                     }
